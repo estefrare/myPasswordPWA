@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #292724;
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logoTitle {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.logoSubtitle {
+  font-size: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 30px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #F00;
+}

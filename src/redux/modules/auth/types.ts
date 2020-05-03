@@ -3,7 +3,7 @@ import * as actions from './actions';
 
 export interface AuthState {
   isFetching: boolean;
-  token: string;
+  authenticated: boolean;
   error?: Error;
 }
 
@@ -15,6 +15,11 @@ export interface Error {
 export interface FirebaseError {
   message: string;
   code: string;
+}
+
+export interface LoginParams {
+  email: string;
+  password: string;
 }
 
 export type ActionsType = ActionType<typeof actions>;

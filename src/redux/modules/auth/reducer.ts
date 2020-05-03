@@ -6,14 +6,14 @@ const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthSta
   switch (action.type) {
     case AuthActionConst.LOGIN_FIREBASE_FETCHING:
       return {
-        ...state,
+        ...initialState,
         isFetching: true,
-        error: initialState.error
       }
     case AuthActionConst.LOGIN_FIREBASE_FULFILLED:
       return {
         ...state,
         isFetching: false,
+        authenticated: true,
       }
     case AuthActionConst.LOGIN_FIREBASE_REJECTED:
       return {

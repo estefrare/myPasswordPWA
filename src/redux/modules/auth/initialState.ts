@@ -3,7 +3,7 @@ import { AuthState } from './types';
 const InitialState: AuthState = {
   error: undefined,
   isFetching: false,
-  token: '',
+  authenticated: false,
 };
 
 export default InitialState;

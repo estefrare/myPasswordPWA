@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './home.module.css'
 
 export const Home = () => {
   return (
-    <div>
+    <div className={styles.container}>
       Home
     </div>
   )
