@@ -33,6 +33,10 @@
   padding: 15px;
 }
 
+.loginButton {
+  width: 90%;
+}
+
 .error {
   display: flex;
   justify-content: center;

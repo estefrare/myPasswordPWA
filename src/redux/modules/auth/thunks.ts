@@ -17,3 +17,14 @@ export const loginWithFirebase = (params: TYPES.LoginParams) =>
       return dispatch(ACTIONS.loginWithFirebaseRejected(error));
     }
   };
+
+export const logout: any = () => async (dispatch: ThunkDispatch<DVPState, {}, AnyAction>) => {
+  dispatch(ACTIONS.logoutFetching());
+  try {
+    await Firebase.auth().signOut();
+    return dispatch(ACTIONS.logoutFulfilled());
+  }
+  catch (error) {
+    return dispatch(ACTIONS.logoutRejected(error));
+  }
+};

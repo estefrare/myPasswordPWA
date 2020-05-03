@@ -4,6 +4,7 @@ import { AuthState, AuthActionConst } from './types';
 
 const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthState => {
   switch (action.type) {
+    case AuthActionConst.LOGOUT_FETCHING:
     case AuthActionConst.LOGIN_FIREBASE_FETCHING:
       return {
         ...initialState,
@@ -15,6 +16,9 @@ const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthSta
         isFetching: false,
         authenticated: true,
       }
+    case AuthActionConst.LOGOUT_FULFILLED:
+      return initialState;
+    case AuthActionConst.LOGOUT_REJECTED:
     case AuthActionConst.LOGIN_FIREBASE_REJECTED:
       return {
         ...state,

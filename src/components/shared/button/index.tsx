@@ -7,6 +7,7 @@ interface Props {
   type?: "button" | "submit" | "reset" | undefined;
   submitting?: boolean;
   disabled?: boolean;
+  onClick?: () => void;
 }
 
 export const Button = (props: Props) => {
@@ -16,6 +17,7 @@ export const Button = (props: Props) => {
     children,
     disabled,
     submitting,
+    onClick,
   } = props
 
   return (
@@ -23,6 +25,7 @@ export const Button = (props: Props) => {
       type={type}
       disabled={disabled}
       className={styles.button}
+      onClick={onClick}
     >
       {submitting 
         ? (<PulseLoader

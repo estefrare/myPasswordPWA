@@ -14,3 +14,16 @@ export const loginWithFirebaseRejected = (error: TYPES.FirebaseError) => action(
   TYPES.AuthActionConst.LOGIN_FIREBASE_REJECTED,
   error,
 );
+
+export const logoutFetching = () => action(
+  TYPES.AuthActionConst.LOGOUT_FETCHING,
+);
+
+export const logoutFulfilled = () => action(
+  TYPES.AuthActionConst.LOGOUT_FULFILLED,
+);
+
+export const logoutRejected = (error: TYPES.Error) => action(
+  TYPES.AuthActionConst.LOGOUT_REJECTED,
+  error
+);

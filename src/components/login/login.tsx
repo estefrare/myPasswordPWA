@@ -66,13 +66,15 @@ export const Login = (props: ReduxProps) => {
               type="password"
               component={TextInput} 
             />
-            <Button 
-              type="submit"
-              disabled={isFetching || !values.email || !values.password}
-              submitting={isFetching}
-            >
-              Login
-            </Button>
+            <div className={styles.loginButton}>
+              <Button 
+                type="submit"
+                disabled={isFetching || !values.email || !values.password}
+                submitting={isFetching}
+                >
+                Login
+              </Button>
+            </div>
             <div className={styles.error}>
               {submitError}
             </div>
