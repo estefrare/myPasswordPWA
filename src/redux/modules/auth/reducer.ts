@@ -15,6 +15,10 @@ const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthSta
         ...state,
         isFetching: false,
         authenticated: true,
+        user: {
+          uid: action.payload.user.uid,
+          email: action.payload.user.email,
+        }
       }
     case AuthActionConst.LOGOUT_FULFILLED:
       return initialState;

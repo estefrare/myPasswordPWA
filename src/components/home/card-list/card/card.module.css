@@ -1,0 +1,79 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  max-width: 90%;
+  max-height: 50vh;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #FFF;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  padding: 10px;
+  padding-left: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #292724;
+  background-color: rgba(219, 219, 219, 0.30);
+}
+
+.body {
+  padding: 15px;
+}
+
+.input {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(41, 39, 36, 0.10);
+}
+
+.input:focus {
+  outline-width: 0;
+}
+
+.input:read-only {
+  cursor: default;
+  border-bottom-color: transparent;
+}
+
+.inputHeader {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 15px
+}
+
+.buttonContainer {
+  display: flex;
+  width: 100%;
+}
+
+.editButton {
+  width: 100%;
+  margin: 0 5px;
+}
+
+.cancelButton {
+  color: #FFF;
+  background-color: #3C3C3C;
+}
+
+.trashButton {
+  cursor: pointer;
+  background-color: transparent;
+}

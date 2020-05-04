@@ -17,15 +17,16 @@ interface Props {
 }
 
 export const App = (props: Props) => {
+  const { authenticated } = props
   const history = useHistory();
 
   useEffect(() => {
-    if(props.authenticated) {
+    if(authenticated) {
       history.push('/')
     } else {
       history.push('/login')
     }
-  }, [props.authenticated, history])
+  }, [authenticated, history])
 
   return (
     <div className={styles.app}>

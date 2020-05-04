@@ -7,7 +7,8 @@ interface Props {
   type?: "button" | "submit" | "reset" | undefined;
   submitting?: boolean;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (params?: any) => void;
+  className?: string;
 }
 
 export const Button = (props: Props) => {
@@ -18,13 +19,14 @@ export const Button = (props: Props) => {
     disabled,
     submitting,
     onClick,
+    className
   } = props
 
   return (
     <button 
       type={type}
-      disabled={disabled}
-      className={styles.button}
+      disabled={disabled || submitting}
+      className={`${styles.button} ${className}`}
       onClick={onClick}
     >
       {submitting 

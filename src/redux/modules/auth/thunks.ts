@@ -10,8 +10,7 @@ export const loginWithFirebase = (params: TYPES.LoginParams) =>
     dispatch(ACTIONS.loginWithFirebaseFetching());
     try {
       const response: any = await Firebase.auth().signInWithEmailAndPassword(params.email, params.password);
-      const token = await response.user.getIdToken();
-      return dispatch(ACTIONS.loginWithFirebaseFulfilled({ ...response, token }));
+      return dispatch(ACTIONS.loginWithFirebaseFulfilled(response));
     }
     catch (error) {
       return dispatch(ACTIONS.loginWithFirebaseRejected(error));

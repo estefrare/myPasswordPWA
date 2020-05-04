@@ -5,6 +5,10 @@ export interface AuthState {
   isFetching: boolean;
   authenticated: boolean;
   error?: Error;
+  user?: {
+    email: string;
+    uid: string;
+  }
 }
 
 export interface Error {

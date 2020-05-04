@@ -4,6 +4,7 @@ const InitialState: AuthState = {
   error: undefined,
   isFetching: false,
   authenticated: false,
+  user: undefined,
 };
 
 export default InitialState;
