@@ -58,3 +58,24 @@ export const deleteServices: any = (serviceId: TYPES.Service['key']) => async (d
     return dispatch(ACTIONS.deleteServicesRejected(error));
   }
 };
+
+export const addServices: any = (service: TYPES.Service) => async (dispatch: ThunkDispatch<DVPState, {}, AnyAction>) => {
+  dispatch(ACTIONS.addServicesFetching());
+  try {
+    const uid = store.getState().auth.user?.uid;
+    const ref = Firebase.firestore().collection('services');
+    await ref.add({
+      name: service.name,
+      username: service.username,
+      password: service.password,
+      link: service.link,
+      note: service.note,
+      userId: uid,
+    });
+
+    return dispatch(ACTIONS.addServicesFulfilled());
+  }
+  catch (error) {
+    return dispatch(ACTIONS.addServicesRejected(error));
+  }
+};

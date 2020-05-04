@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,4 +11,18 @@
   width: calc(100% - 50px);
   padding: 25px;
   padding-top: 80px;
+}
+
+.addButton {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: #F9AC19;
 }

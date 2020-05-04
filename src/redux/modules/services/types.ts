@@ -14,7 +14,7 @@ export interface Error {
 }
 
 export interface Service {
-  key: string;
+  key?: string;
   name: string;
   username: string;
   password: string;
@@ -34,4 +34,7 @@ export enum ServicesActionConst {
   DELETE_SERVICES_FULFILLED = 'DELETE_SERVICES_FULFILLED',
   DELETE_SERVICES_REJECTED = 'DELETE_SERVICES_REJECTED',
   DELETE_SERVICES_FETCHING = 'DELETE_SERVICES_FETCHING',
+  ADD_SERVICES_FULFILLED = 'ADD_SERVICES_FULFILLED',
+  ADD_SERVICES_REJECTED = 'ADD_SERVICES_REJECTED',
+  ADD_SERVICES_FETCHING = 'ADD_SERVICES_FETCHING',
 }

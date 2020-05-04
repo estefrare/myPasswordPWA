@@ -40,3 +40,16 @@ export const deleteServicesRejected = (error: TYPES.Error) => action(
   TYPES.ServicesActionConst.DELETE_SERVICES_REJECTED,
   error
 );
+
+export const addServicesFetching = () => action(
+  TYPES.ServicesActionConst.ADD_SERVICES_FETCHING,
+);
+
+export const addServicesFulfilled = () => action(
+  TYPES.ServicesActionConst.ADD_SERVICES_FULFILLED,
+);
+
+export const addServicesRejected = (error: TYPES.Error) => action(
+  TYPES.ServicesActionConst.ADD_SERVICES_REJECTED,
+  error
+);

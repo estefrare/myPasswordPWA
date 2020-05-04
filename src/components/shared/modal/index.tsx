@@ -10,6 +10,7 @@ interface Props {
   submitting?: boolean;
   close: () => void;
   callback: (params: any) => void;
+  children?: React.ReactElement;
 }
 
 const ModalComponent = (props: Props) => {
@@ -20,7 +21,8 @@ const ModalComponent = (props: Props) => {
     detail,
     close,
     callback,
-    submitting
+    submitting,
+    children,
   } = props
 
   return (
@@ -28,32 +30,34 @@ const ModalComponent = (props: Props) => {
     className={styles.modalContainer}
     open={open}
   >
-    <div className={styles.modal}>
-      <div className={styles.modalHeader}>
-        {title}
-      </div>
-      <div className={styles.body}>
-        <div className={styles.detail}>
-          {detail}
+    {children || (
+        <div className={styles.modal}>
+          <div className={styles.modalHeader}>
+            {title}
+          </div>
+          <div className={styles.body}>
+            <div className={styles.detail}>
+              {detail}
+            </div>
+            <div className={styles.buttons}>
+              <Button
+                submitting={submitting}
+                onClick={callback}
+                className={styles.button}
+              >
+                Yes
+              </Button>
+              <Button
+                disabled={submitting}
+                onClick={close} 
+                className={`${styles.button} ${styles.cancel}`}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
         </div>
-        <div className={styles.buttons}>
-          <Button
-            submitting={submitting}
-            onClick={callback}
-            className={styles.button}
-          >
-            Yes
-          </Button>
-          <Button
-            disabled={submitting}
-            onClick={close} 
-            className={`${styles.button} ${styles.cancel}`}
-          >
-            Cancel
-          </Button>
-        </div>
-      </div>
-    </div>
+      )}
   </Modal>
   )
 }

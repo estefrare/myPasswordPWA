@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Form, Field, FieldRenderProps } from 'react-final-form'
-import { Service } from 'redux/modules/services/types'
 import Button from 'components/shared/button'
 import Modal from 'components/shared/modal'
 import { ReduxProps } from '.'
 import styles from './card.module.css'
 
 interface Props extends ReduxProps {
-  service: Service;
+  isAdding?: boolean;
+  cancelAdding?: () => void;
 }
 
 interface InputProps extends FieldRenderProps<string, any> {
@@ -29,34 +29,55 @@ export const Header = (props: Props) => {
 
   const [ isDeletingMode, setDeleteMode ] = useState(false)
   const [ isEditing, setEditMode ] = useState(false)
-  const { service, isFetching, isDeleting, deleteServices } = props
+  const { 
+    serviceValue, 
+    isFetching, 
+    isDeleting, 
+    deleteServices,
+    isAdding,
+    cancelAdding
+  } = props
 
   const onSubmit = async (values: any) => {
     try {
-      await props.editServices(values)
+      if(isAdding) {
+        await props.addServices(values)
+      } else if (isEditing) {
+        await props.editServices(values)
+      }
     }
     catch (error) {
       console.log(error)
     }
     finally {
+      cancelAdding && cancelAdding()
       setEditMode(false)
     }
   }
+
+  const handleCancel = useCallback(() => {
+    if(isEditing) {
+      setEditMode(false)
+    }
+    else if(isAdding) {
+      cancelAdding && cancelAdding()
+    }
+  }, [isEditing, isAdding, cancelAdding, setEditMode])
 
   return (
     <div className={styles.container}>
       <Modal
         open={isDeletingMode}
         close={() => setDeleteMode(false)}
-        callback={() => deleteServices(service.key)}
+        callback={() => deleteServices(serviceValue.key)}
         title="Delete"
         detail="Are you sure you want to delete this item?"
         submitting={isDeleting}
       />
       <Form
-        initialValues={service}
+        initialValues={serviceValue}
         onSubmit={onSubmit}
-        render={({ handleSubmit, submitError, values }) => (
+        render={({ handleSubmit, submitError, values, submitting }) => (
           <>
             <div className={styles.header}>
               <Field 
@@ -65,11 +86,13 @@ export const Header = (props: Props) => {
                 type="text"
                 className={styles.inputHeader}
                 component={Input}
-                readOnly={!isEditing}
+                readOnly={!isEditing && !isAdding}
               />
-              <button onClick={() => setDeleteMode(true)} className={styles.trashButton}>
-                <i className="material-icons">delete_outline</i>
-              </button>
+              {!isAdding && (
+                <button onClick={() => setDeleteMode(true)} className={styles.trashButton}>
+                  <i className="material-icons">delete_outline</i>
+                </button>
+              )}
             </div>
             <div className={styles.body}>
               <div className={styles.inputContainer}>
@@ -79,7 +102,7 @@ export const Header = (props: Props) => {
                   type="text"
                   className={styles.inputHeader}
                   component={Input}
-                  readOnly={!isEditing}
+                  readOnly={!isEditing && !isAdding}
                 />
               </div>
               <div className={styles.inputContainer}>
@@ -89,23 +112,25 @@ export const Header = (props: Props) => {
                   type="password"
                   className={styles.inputHeader}
                   component={Input}
-                  readOnly={!isEditing}
+                  readOnly={!isEditing && !isAdding}
                 />
               </div>
               <div className={styles.buttonContainer}>
                 <Button
-                  submitting={isEditing && isFetching}
+                  disabled={submitting || !values.name || !values.username || !values.password}
+                  submitting={submitting && isFetching}
                   className={styles.editButton}
-                  onClick={isEditing 
+                  onClick={(isEditing || isAdding) 
                     ? handleSubmit
                     : () => setEditMode(true)}
                 >
-                  {isEditing ? 'Save' : 'Edit'}
+                  {(isEditing || isAdding) ? 'Save' : 'Edit'}
                 </Button>
-                {isEditing && (
+                {(isEditing || isAdding) && (
                   <Button
+                    disabled={submitting}
                     className={`${styles.editButton} ${styles.cancelButton}`}
-                    onClick={() => setEditMode(!isEditing)}
+                    onClick={handleCancel}
                   >
                     Cancel
                   </Button>

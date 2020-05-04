@@ -5,6 +5,7 @@ import { ServicesState, ServicesActionConst } from './types';
 const reducer: Reducer<ServicesState, any> = (state = initialState, action): ServicesState => {
   switch (action.type) {
     case ServicesActionConst.GET_SERVICES_FETCHING:
+    case ServicesActionConst.ADD_SERVICES_FETCHING:
     case ServicesActionConst.EDIT_SERVICES_FETCHING:
       return {
         ...state,
@@ -21,6 +22,7 @@ const reducer: Reducer<ServicesState, any> = (state = initialState, action): Ser
         isFetching: false,
         list: action.payload,
       }
+    case ServicesActionConst.ADD_SERVICES_FULFILLED:
     case ServicesActionConst.EDIT_SERVICES_FULFILLED:
       return {
         ...state,
@@ -32,6 +34,7 @@ const reducer: Reducer<ServicesState, any> = (state = initialState, action): Ser
         isDeleting: false,
       }
     case ServicesActionConst.GET_SERVICES_REJECTED:
+    case ServicesActionConst.ADD_SERVICES_REJECTED:
     case ServicesActionConst.EDIT_SERVICES_REJECTED:
       return {
         ...state,
