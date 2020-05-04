@@ -1,5 +1,27 @@
 .container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.list {
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.input {
+  height: 100%;
+  width: 250px;
+  border: 0;
+  margin-bottom: 10px;
+  outline: none;
+  font-size: 16px;
+  background-color: transparent;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(255, 255, 255, 0.596);
+  color: #FFF;
 }
