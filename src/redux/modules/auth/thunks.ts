@@ -9,7 +9,7 @@ export const loginWithFirebase = (params: TYPES.LoginParams) =>
   async (dispatch: ThunkDispatch<DVPState, {}, AnyAction>) => {
     dispatch(ACTIONS.loginWithFirebaseFetching());
     try {
-      const response: any = await Firebase.auth().signInWithEmailAndPassword(params.email, params.password);
+      const response: any = await Firebase.auth().signInWithEmailAndPassword(params.email.trim(), params.password.trim());
       return dispatch(ACTIONS.loginWithFirebaseFulfilled(response));
     }
     catch (error) {

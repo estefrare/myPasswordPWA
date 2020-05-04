@@ -30,7 +30,7 @@ export const CardList = (props: ReduxProps) => {
         <i className="material-icons">search</i>
       </div>
       <div className={styles.list}>
-        {filterList.map((service) => <Card key={service.key} service={service} />)}
+        {filterList.map((service) => <Card key={service.name} service={service} />)}
       </div>
     </div>
   )

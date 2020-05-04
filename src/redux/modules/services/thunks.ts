@@ -38,8 +38,8 @@ export const editServices: any = (service: TYPES.Service) => async (dispatch: Th
       name: service.name,
       username: service.username,
       password: service.password,
-      link: service.link,
-      note: service.note,
+      link: service.link || '',
+      note: service.note || '',
     });
     return dispatch(ACTIONS.editServicesFulfilled());
   }
