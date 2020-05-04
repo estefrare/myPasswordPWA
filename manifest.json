@@ -19,7 +19,7 @@
     }
   ],
   "start_url": "https://estefrare.github.io/myPasswordPWA/",
-  "display": "standalone",
+  "display": "fullscreen",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
