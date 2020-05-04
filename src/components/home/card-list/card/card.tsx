@@ -28,6 +28,7 @@ const Input = (inputProps: InputProps) => {
 export const Header = (props: Props) => {
 
   const [ isDeletingMode, setDeleteMode ] = useState(false)
+  const [ isShowingPassword, setShowPassword ] = useState(false)
   const [ isEditing, setEditMode ] = useState(false)
   const { 
     serviceValue, 
@@ -63,6 +64,15 @@ export const Header = (props: Props) => {
       cancelAdding && cancelAdding()
     }
   }, [isEditing, isAdding, cancelAdding, setEditMode])
+
+  const copyToClipboard = () => {
+    const textField = document.createElement('textarea');
+    textField.innerText = serviceValue.password;
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand('copy');
+    textField.remove();
+  };
 
   return (
     <div className={styles.container}>
@@ -109,12 +119,52 @@ export const Header = (props: Props) => {
                 <Field 
                   name="password"
                   placeholder="Password"
-                  type="password"
+                  type={isShowingPassword ? "text" : "password"}
                   className={styles.inputHeader}
                   component={Input}
                   readOnly={!isEditing && !isAdding}
                 />
+                { (!isEditing && !isAdding) && (
+                  <>
+                    <button 
+                      onClick={() => setShowPassword(!isShowingPassword)} 
+                      className={styles.trashButton}
+                    >
+                      <i className="material-icons">{isShowingPassword ? 'visibility' : 'visibility_off'}</i>
+                    </button>
+                    <button 
+                      onClick={copyToClipboard}
+                      className={styles.trashButton}
+                    >
+                      <i className="material-icons">file_copy</i>
+                    </button>
+                  </>
+                )}
               </div>
+              {((isEditing || isAdding) || serviceValue.link) && (
+                <div className={styles.inputContainer}>
+                  <Field 
+                    name="link"
+                    placeholder="Link"
+                    type={"text"}
+                    className={styles.inputHeader}
+                    component={Input}
+                    readOnly={!isEditing && !isAdding}
+                  />
+                </div>
+              )}
+               {((isEditing || isAdding) || serviceValue.note) && (
+                <div className={styles.inputContainer}>
+                  <Field 
+                    name="note"
+                    placeholder="Note"
+                    type={"text"}
+                    className={styles.inputHeader}
+                    component={Input}
+                    readOnly={!isEditing && !isAdding}
+                  />
+                </div>
+              )}
               <div className={styles.buttonContainer}>
                 <Button
                   disabled={submitting || !values.name || !values.username || !values.password}
