@@ -1,0 +1,35 @@
+{
+  "files": {
+    "static/js/0.b1e71f2b.chunk.js": "/myPasswordPWA/static/js/0.b1e71f2b.chunk.js",
+    "static/js/0.b1e71f2b.chunk.js.map": "/myPasswordPWA/static/js/0.b1e71f2b.chunk.js.map",
+    "main.css": "/myPasswordPWA/static/css/main.82268257.chunk.css",
+    "main.js": "/myPasswordPWA/static/js/main.816afd00.chunk.js",
+    "main.js.map": "/myPasswordPWA/static/js/main.816afd00.chunk.js.map",
+    "runtime-main.js": "/myPasswordPWA/static/js/runtime-main.223989fb.js",
+    "runtime-main.js.map": "/myPasswordPWA/static/js/runtime-main.223989fb.js.map",
+    "static/js/3.19eba32f.chunk.js": "/myPasswordPWA/static/js/3.19eba32f.chunk.js",
+    "static/js/3.19eba32f.chunk.js.map": "/myPasswordPWA/static/js/3.19eba32f.chunk.js.map",
+    "static/css/4.31bb4814.chunk.css": "/myPasswordPWA/static/css/4.31bb4814.chunk.css",
+    "static/js/4.e6d11ea7.chunk.js": "/myPasswordPWA/static/js/4.e6d11ea7.chunk.js",
+    "static/js/4.e6d11ea7.chunk.js.map": "/myPasswordPWA/static/js/4.e6d11ea7.chunk.js.map",
+    "static/css/5.834bdc50.chunk.css": "/myPasswordPWA/static/css/5.834bdc50.chunk.css",
+    "static/js/5.63cb9ea8.chunk.js": "/myPasswordPWA/static/js/5.63cb9ea8.chunk.js",
+    "static/js/5.63cb9ea8.chunk.js.map": "/myPasswordPWA/static/js/5.63cb9ea8.chunk.js.map",
+    "static/js/6.24b37e12.chunk.js": "/myPasswordPWA/static/js/6.24b37e12.chunk.js",
+    "static/js/6.24b37e12.chunk.js.map": "/myPasswordPWA/static/js/6.24b37e12.chunk.js.map",
+    "index.html": "/myPasswordPWA/index.html",
+    "precache-manifest.e87d18786c2e7af1492d2f80c9c94642.js": "/myPasswordPWA/precache-manifest.e87d18786c2e7af1492d2f80c9c94642.js",
+    "service-worker.js": "/myPasswordPWA/service-worker.js",
+    "static/css/4.31bb4814.chunk.css.map": "/myPasswordPWA/static/css/4.31bb4814.chunk.css.map",
+    "static/css/5.834bdc50.chunk.css.map": "/myPasswordPWA/static/css/5.834bdc50.chunk.css.map",
+    "static/css/main.82268257.chunk.css.map": "/myPasswordPWA/static/css/main.82268257.chunk.css.map",
+    "static/js/0.b1e71f2b.chunk.js.LICENSE.txt": "/myPasswordPWA/static/js/0.b1e71f2b.chunk.js.LICENSE.txt",
+    "static/js/3.19eba32f.chunk.js.LICENSE.txt": "/myPasswordPWA/static/js/3.19eba32f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.223989fb.js",
+    "static/js/3.19eba32f.chunk.js",
+    "static/css/main.82268257.chunk.css",
+    "static/js/main.816afd00.chunk.js"
+  ]
+}
