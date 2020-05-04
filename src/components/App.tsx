@@ -22,7 +22,7 @@ export const App = (props: Props) => {
 
   useEffect(() => {
     if(authenticated) {
-      history.push('/')
+      history.push('/home')
     } else {
       history.push('/login')
     }
@@ -33,7 +33,7 @@ export const App = (props: Props) => {
       <Switch>
         <Suspense fallback={<PulseLoader size={15} color={'#292724'} loading />}>
           <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={Home} />
+          <Route path="/home" component={Home} />
         </Suspense>
       </Switch>
     </div>
