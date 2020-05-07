@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { Form, Field, FieldRenderProps } from 'react-final-form'
 import Button from 'components/shared/button'
 import Modal from 'components/shared/modal'
+import { generatePassword } from 'helpers/utils'
 import { ReduxProps } from '.'
 import styles from './card.module.css'
 
@@ -65,9 +66,9 @@ export const Header = (props: Props) => {
     }
   }, [isEditing, isAdding, cancelAdding, setEditMode])
 
-  const copyToClipboard = () => {
+  const copyToClipboard = (text: string) => {
     const textField = document.createElement('textarea');
-    textField.innerText = serviceValue.password;
+    textField.innerText = text;
     document.body.appendChild(textField);
     textField.select();
     document.execCommand('copy');
@@ -87,7 +88,12 @@ export const Header = (props: Props) => {
       <Form
         initialValues={serviceValue}
         onSubmit={onSubmit}
-        render={({ handleSubmit, submitError, values, submitting }) => (
+        mutators={{
+          setValue: ([field, value], state, { changeValue }) => {
+            changeValue(state, field, () => value);
+          },
+        }}
+        render={({ handleSubmit, form, values, submitting, pristine }) => (
           <>
             <div className={styles.header}>
               <Field 
@@ -114,17 +120,25 @@ export const Header = (props: Props) => {
                   component={Input}
                   readOnly={!isEditing && !isAdding}
                 />
+                { (!isEditing && !isAdding) && (
+                  <button 
+                    onClick={() => copyToClipboard(serviceValue.username)}
+                    className={styles.trashButton}
+                  >
+                    <i className="material-icons">file_copy</i>
+                  </button>
+                )}
               </div>
               <div className={styles.inputContainer}>
                 <Field 
                   name="password"
                   placeholder="Password"
-                  type={isShowingPassword ? "text" : "password"}
+                  type={(isShowingPassword || isEditing || isAdding) ? "text" : "password"}
                   className={styles.inputHeader}
                   component={Input}
                   readOnly={!isEditing && !isAdding}
                 />
-                { (!isEditing && !isAdding) && (
+                { (!isEditing && !isAdding) ? (
                   <>
                     <button 
                       onClick={() => setShowPassword(!isShowingPassword)} 
@@ -133,13 +147,24 @@ export const Header = (props: Props) => {
                       <i className="material-icons">{isShowingPassword ? 'visibility' : 'visibility_off'}</i>
                     </button>
                     <button 
-                      onClick={copyToClipboard}
+                      onClick={() => copyToClipboard(serviceValue.password)}
                       className={styles.trashButton}
                     >
                       <i className="material-icons">file_copy</i>
                     </button>
                   </>
-                )}
+                )
+                : (
+                  <button 
+                    onClick={() => {
+                      form.mutators.setValue('password', generatePassword());
+                    }}
+                    className={styles.trashButton}
+                  >
+                    <i className="material-icons">loop</i>
+                  </button>
+                )
+              }
               </div>
               {((isEditing || isAdding) || serviceValue.link) && (
                 <div className={styles.inputContainer}>
@@ -167,7 +192,13 @@ export const Header = (props: Props) => {
               )}
               <div className={styles.buttonContainer}>
                 <Button
-                  disabled={submitting || !values.name || !values.username || !values.password}
+                  disabled={
+                    (isEditing && pristine) 
+                    || submitting 
+                    || !values.name 
+                    || !values.username 
+                    || !values.password
+                  }
                   submitting={submitting && isFetching}
                   className={styles.editButton}
                   onClick={(isEditing || isAdding) 

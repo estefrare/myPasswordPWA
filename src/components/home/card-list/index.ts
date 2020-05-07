@@ -6,10 +6,12 @@ import { getServices } from 'redux/modules/services/thunks'
 
 interface StateProps {
   readonly serviceList: DVPState['services']['list'];
+  readonly isFetching: DVPState['services']['isFetching'];
 }
 
 const mapStateToProps = (state: DVPState) => ({
   serviceList: state.services.list,
+  isFetching: state.services.isFetching,
 });
 
 interface DispatchProps {

@@ -4,6 +4,7 @@ import * as actions from './actions';
 export interface ServicesState {
   isFetching: boolean;
   isDeleting: boolean;
+  isEditing: boolean;
   list: Service[];
   error?: Error;
 }

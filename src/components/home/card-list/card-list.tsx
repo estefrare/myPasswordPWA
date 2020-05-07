@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Card from './card'
+import PulseLoader from 'react-spinners/PulseLoader'
 import { ReduxProps } from '.'
 import styles from './card-list.module.css'
 
 export const CardList = (props: ReduxProps) => {
 
-  const { getServices, serviceList } = props
+  const { getServices, serviceList, isFetching } = props
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -30,7 +31,10 @@ export const CardList = (props: ReduxProps) => {
         <i className="material-icons">search</i>
       </div>
       <div className={styles.list}>
-        {filterList.map((service) => <Card key={service.name} service={service} />)}
+        {isFetching 
+          ? (<div className={styles.loader}><PulseLoader size={10} color={'#FFF'} loading={true} /></div>) 
+          : filterList.map((service) => <Card key={service.name} service={service} />)
+        }
       </div>
     </div>
   )

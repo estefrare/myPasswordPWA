@@ -22,9 +22,9 @@ export const App = (props: Props) => {
 
   useEffect(() => {
     if(authenticated) {
-      history.push('/home')
+      history.replace('/home')
     } else {
-      history.push('/login')
+      history.replace('/login')
     }
   }, [authenticated, history])
 
