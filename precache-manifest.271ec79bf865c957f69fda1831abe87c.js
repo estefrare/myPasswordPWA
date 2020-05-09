@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fb638d41bac0338163c45d079b8e1e06",
+    "revision": "a80e8c0a0dfa4204c2cafb5c21f2e43b",
     "url": "/myPasswordPWA/index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/myPasswordPWA/static/css/5.3474103c.chunk.css"
   },
   {
-    "revision": "0d35c409800541e3c913",
+    "revision": "3c9d1527b0f33a28bfb6",
     "url": "/myPasswordPWA/static/css/main.083b4504.chunk.css"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/myPasswordPWA/static/js/6.3a8cafb7.chunk.js"
   },
   {
-    "revision": "0d35c409800541e3c913",
-    "url": "/myPasswordPWA/static/js/main.f7ee6714.chunk.js"
+    "revision": "3c9d1527b0f33a28bfb6",
+    "url": "/myPasswordPWA/static/js/main.fb763f64.chunk.js"
   },
   {
     "revision": "17bc47ccfd364faa2b07",
