@@ -7,8 +7,8 @@
   font-weight: 600;
   font-size: 12px;
   cursor: pointer;
-  background-color: #F9AC19;
-  box-shadow: -4px 4px 6px -2px rgba(0,0,0,0.2);
+  box-shadow: var(--button-shadow);
+  background-color: var(--color-yellow);
 }
 
 .button:focus {

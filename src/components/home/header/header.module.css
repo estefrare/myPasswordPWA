@@ -7,7 +7,8 @@
   align-items: center;
   width: 100%;
   height: 50px;
-  background-color: #F9AC19;
+  box-shadow: var(--button-shadow);
+  background-color: var(--color-yellow);
 }
 
 .logout {
