@@ -33,6 +33,11 @@ const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthSta
           statusCode: action.payload.code,
         },
       };
+    case AuthActionConst.SET_FINGER_PRINT:
+      return {
+        ...state,
+        useFingerPrint: action.payload,
+      }
     default:
       return state
   }

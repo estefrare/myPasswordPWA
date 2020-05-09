@@ -5,6 +5,7 @@ export interface AuthState {
   isFetching: boolean;
   authenticated: boolean;
   error?: Error;
+  useFingerPrint: boolean;
   user?: {
     password: string;
     email: string;
@@ -36,4 +37,5 @@ export enum AuthActionConst {
   LOGOUT_FULFILLED = 'LOGOUT_FULFILLED',
   LOGOUT_REJECTED = 'LOGOUT_REJECTED',
   LOGOUT_FETCHING = 'LOGOUT_FETCHING',
+  SET_FINGER_PRINT = 'SET_FINGER_PRINT',
 }

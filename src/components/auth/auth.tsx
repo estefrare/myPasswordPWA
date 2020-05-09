@@ -4,16 +4,15 @@ import { webAuthnSignin, webAuthnSignup } from 'helpers/webauth'
 import { ReduxProps } from './'
 import styles from './auth.module.css'
 
-
 export const Auth = (props: ReduxProps) => { 
-  const { authenticated, password, logout } = props
+  const { authenticated, password, logout, useFingerPrint } = props
   const history = useHistory();
 
   useEffect(() => {
     if(authenticated) {
       if(!password) {
         logout()
-      } else {
+      } else if(useFingerPrint) {
         const usersString = localStorage.getItem('users');
         if(usersString) {
           webAuthnSignin().then(() => {
@@ -27,13 +26,14 @@ export const Auth = (props: ReduxProps) => {
             history.replace('/home')
           })
         }
+      } else if (!useFingerPrint) {
+        history.replace('/home')
       }
     }
-  }, [authenticated, history, password, logout])
+  }, [authenticated, history, password, logout, useFingerPrint])
 
   return (
     <div className={styles.container}>
-
     </div>
   )
 }

@@ -5,6 +5,7 @@ const InitialState: AuthState = {
   isFetching: false,
   authenticated: false,
   user: undefined,
+  useFingerPrint: false,
 };
 
 export default InitialState;

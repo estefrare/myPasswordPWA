@@ -28,3 +28,8 @@ export const logoutRejected = (error: TYPES.Error) => action(
   TYPES.AuthActionConst.LOGOUT_REJECTED,
   error
 );
+
+export const setFingerPrint = (value: boolean) => action(
+  TYPES.AuthActionConst.SET_FINGER_PRINT,
+  value
+);
