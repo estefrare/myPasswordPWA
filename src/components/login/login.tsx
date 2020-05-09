@@ -13,7 +13,7 @@ export const Login = (props: ReduxProps) => {
     const { password, email } = values;
     let error
     try {
-      const response: any = await props.loginWithFirebase({ email, password });
+      const response: any = await props.loginWithFirebase({ email, password })
       switch (response.payload.code) {
         case 'auth/user-not-found':
           error = 'Usuario o contraseña incorrecta'

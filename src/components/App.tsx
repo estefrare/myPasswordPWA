@@ -9,9 +9,8 @@ import { DVPState } from 'redux/modules';
 import PulseLoader from 'react-spinners/PulseLoader'
 import styles from './app.module.css';
 
-import { webAuthnSignup } from 'helpers/webauth'
-
 const Login = lazy(() => import('components/login'));
+const Auth = lazy(() => import('components/auth'));
 const Home = lazy(() => import('components/home'));
 
 interface Props {
@@ -24,7 +23,7 @@ export const App = (props: Props) => {
 
   useEffect(() => {
     if(authenticated) {
-      history.replace('/home')
+      history.replace('/auth')
     } else {
       history.replace('/login')
     }
@@ -34,10 +33,8 @@ export const App = (props: Props) => {
     <div className={styles.app}>
       <Switch>
         <Suspense fallback={<PulseLoader size={15} color={'#292724'} loading />}>
+          <Route exact path="/auth" component={Auth} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/test">
-            <button onClick={webAuthnSignup}>test</button>
-          </Route>
           <Route exact path="/home" component={Home} />
         </Suspense>
       </Switch>
