@@ -5,6 +5,7 @@ const InitialState: ServicesState = {
   isFetching: false,
   isEditing: false,
   isDeleting: false,
+  isAdding: false,
   list: [],
 };
 

@@ -18,6 +18,7 @@ const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthSta
         user: {
           uid: action.payload.user.uid,
           email: action.payload.user.email,
+          password: action.meta,
         }
       }
     case AuthActionConst.LOGOUT_FULFILLED:

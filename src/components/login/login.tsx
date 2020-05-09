@@ -79,8 +79,14 @@ export const Login = (props: ReduxProps) => {
               {submitError}
             </div>
           </form>
+          
         )}
       />
+      <div className={styles.message}>
+        Your password is used to encrypt the other passwords stored in the database.
+        <br/>
+        If you forget this password, you will not be able to recover the other passwords.
+      </div>
     </div>
   )
 }

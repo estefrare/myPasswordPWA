@@ -6,6 +6,7 @@ export interface AuthState {
   authenticated: boolean;
   error?: Error;
   user?: {
+    password: string;
     email: string;
     uid: string;
   }

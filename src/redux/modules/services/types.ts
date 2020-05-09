@@ -5,6 +5,7 @@ export interface ServicesState {
   isFetching: boolean;
   isDeleting: boolean;
   isEditing: boolean;
+  isAdding: boolean;
   list: Service[];
   error?: Error;
 }

@@ -5,9 +5,10 @@ export const loginWithFirebaseFetching = () => action(
   TYPES.AuthActionConst.LOGIN_FIREBASE_FETCHING,
 );
 
-export const loginWithFirebaseFulfilled = (data: any) => action(
+export const loginWithFirebaseFulfilled = (data: any, password:string) => action(
   TYPES.AuthActionConst.LOGIN_FIREBASE_FULFILLED,
   data,
+  password,
 );
 
 export const loginWithFirebaseRejected = (error: TYPES.FirebaseError) => action(

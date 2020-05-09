@@ -6,8 +6,8 @@ import { editServices, deleteServices, addServices } from 'redux/modules/service
 import { Service } from 'redux/modules/services/types'
 
 interface StateProps {
-  readonly isFetching: DVPState['services']['isFetching'];
   readonly isDeleting: DVPState['services']['isDeleting'];
+  readonly isAddFetching: DVPState['services']['isAdding'];
   serviceValue: Service;
 }
 
@@ -19,8 +19,8 @@ const emptyService = { name: '', username: '', password: '', link: '', note: '' 
 
 const mapStateToProps = (state: DVPState, ownProps: OwnProps) => ({
   serviceValue: ownProps.service || emptyService,
-  isFetching: state.services.isFetching,
   isDeleting: state.services.isDeleting,
+  isAddFetching: state.services.isAdding,
 });
 
 interface DispatchProps {

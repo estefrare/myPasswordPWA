@@ -6,26 +6,30 @@ import styles from './auth.module.css'
 
 
 export const Auth = (props: ReduxProps) => { 
-  const { authenticated } = props
+  const { authenticated, password, logout } = props
   const history = useHistory();
 
   useEffect(() => {
     if(authenticated) {
-      const usersString = localStorage.getItem('users');
-      if(usersString) {
-        webAuthnSignin().then(() => {
-          history.replace('/home')
-        })
-        .catch(() => {
-          history.replace('/login')
-        })
+      if(!password) {
+        logout()
       } else {
-        webAuthnSignup('randomUser').then(() => {
-          history.replace('/home')
-        })
+        const usersString = localStorage.getItem('users');
+        if(usersString) {
+          webAuthnSignin().then(() => {
+            history.replace('/home')
+          })
+          .catch(() => {
+            logout()
+          })
+        } else {
+          webAuthnSignup('randomUser').then(() => {
+            history.replace('/home')
+          })
+        }
       }
     }
-  }, [authenticated, history])
+  }, [authenticated, history, password, logout])
 
   return (
     <div className={styles.container}>

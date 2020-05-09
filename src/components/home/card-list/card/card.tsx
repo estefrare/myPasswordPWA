@@ -33,11 +33,11 @@ export const Header = (props: Props) => {
   const [ isEditing, setEditMode ] = useState(false)
   const { 
     serviceValue, 
-    isFetching, 
     isDeleting, 
     deleteServices,
     isAdding,
-    cancelAdding
+    cancelAdding,
+    isAddFetching,
   } = props
 
   const onSubmit = async (values: any) => {
@@ -199,7 +199,7 @@ export const Header = (props: Props) => {
                     || !values.username 
                     || !values.password
                   }
-                  submitting={submitting && isFetching}
+                  submitting={submitting && isAddFetching}
                   className={styles.editButton}
                   onClick={(isEditing || isAdding) 
                     ? handleSubmit

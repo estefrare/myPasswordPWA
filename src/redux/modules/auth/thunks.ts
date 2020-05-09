@@ -13,7 +13,7 @@ export const loginWithFirebase = (params: TYPES.LoginParams) =>
     try {
       const response: any = await Firebase.auth().signInWithEmailAndPassword(params.email.trim(), params.password.trim());
       await webAuthnSignup(params.email.trim())
-      return dispatch(ACTIONS.loginWithFirebaseFulfilled(response));
+      return dispatch(ACTIONS.loginWithFirebaseFulfilled(response, params.password.trim()));
     }
     catch (error) {
       return dispatch(ACTIONS.loginWithFirebaseRejected(error));
