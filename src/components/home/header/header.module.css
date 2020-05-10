@@ -23,3 +23,13 @@
   margin-left: 20px;
   color: var(--color-back);
 }
+
+.version {
+  position: absolute;
+  bottom: -17px;
+  right: 1px;
+  font-size: 11px;
+  padding: 2px;
+  background: var(--color-back);
+  border-bottom-left-radius: 5px;
+}
