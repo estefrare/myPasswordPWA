@@ -22,6 +22,7 @@ export interface Service {
   password: string;
   link?: string;
   note?: string;
+  encrypted?: boolean;
 }
 
 export type ActionsType = ActionType<typeof actions>;

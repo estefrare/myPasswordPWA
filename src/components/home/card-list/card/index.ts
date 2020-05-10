@@ -8,6 +8,7 @@ import { Service } from 'redux/modules/services/types'
 interface StateProps {
   readonly isDeleting: DVPState['services']['isDeleting'];
   readonly isAddFetching: DVPState['services']['isAdding'];
+
   serviceValue: Service;
 }
 
@@ -21,6 +22,7 @@ const mapStateToProps = (state: DVPState, ownProps: OwnProps) => ({
   serviceValue: ownProps.service || emptyService,
   isDeleting: state.services.isDeleting,
   isAddFetching: state.services.isAdding,
+
 });
 
 interface DispatchProps {

@@ -4,8 +4,8 @@ import { ThunkDispatch } from 'redux-thunk';
 import { DVPState } from 'redux/modules/index';
 import { AnyAction } from 'redux';
 import { store } from 'redux/store';
-import * as AES from 'helpers/encrypt/index.js'
 import Firebase from 'helpers/firebase';
+import CryptoJS from 'crypto-js';
 
 export const getServices: any = () => async (dispatch: ThunkDispatch<DVPState, {}, AnyAction>) => {
   dispatch(ACTIONS.getServicesFetching());
@@ -14,18 +14,20 @@ export const getServices: any = () => async (dispatch: ThunkDispatch<DVPState, {
     const unsubscribe = await Firebase.firestore()
       .collection('services')
       .where('userId', '==', user?.uid)
-      .onSnapshot((querySnapshot: any) => {
-        const servicesList: TYPES.Service[] = [];
-        querySnapshot.forEach(async (documentSnapshot: any) => {
-          const data = documentSnapshot.data()
-          servicesList.push({
+      .onSnapshot(async (querySnapshot: any) => {
+        const servicesList: TYPES.Service[] = querySnapshot.docs.map((item: any) => {
+          const data = item.data()
+          let password = data.password
+          if(data.encryptedV2) {
+            const decryptedBytes = CryptoJS.AES.decrypt(data.password, user?.password || '');
+            password = decryptedBytes.toString(CryptoJS.enc.Utf8);
+          }
+          return{
             ...data,
-            key: documentSnapshot.id,
-            password: data.encrypted
-              ? await AES.decrypt(data.password, user?.password) 
-              : data.password,
-          });
-        });
+            key: item.id,
+            password,
+          }
+        })
         dispatch(ACTIONS.getServicesFulfilled(servicesList));
         return unsubscribe()
       })
@@ -43,10 +45,10 @@ export const editServices: any = (service: TYPES.Service) => async (dispatch: Th
     await ref.update({
       name: service.name,
       username: service.username,
-      password: await AES.encrypt(service.password, user?.password),
+      password: CryptoJS.AES.encrypt(service.password, user?.password || '').toString(),
       link: service.link || '',
       note: service.note || '',
-      encrypted: true,
+      encryptedV2: true,
     });
     return dispatch(ACTIONS.editServicesFulfilled(service));
   }
@@ -74,11 +76,11 @@ export const addServices: any = (service: TYPES.Service) => async (dispatch: Thu
     const newService = await ref.add({
       name: service.name,
       username: service.username,
-      password: await AES.encrypt(service.password, user?.password),
+      password: CryptoJS.AES.encrypt(service.password, user?.password || '').toString(),
       link: service.link,
       note: service.note,
       userId: user?.uid,
-      encrypted: true,
+      encryptedV2: true,
     });
     return dispatch(ACTIONS.addServicesFulfilled({ ...service, key: newService.id }));
   }

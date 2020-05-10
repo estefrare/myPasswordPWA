@@ -33,7 +33,7 @@ export const CardList = (props: ReduxProps) => {
       <div className={styles.list}>
         {isFetching 
           ? (<div className={styles.loader}><PulseLoader size={10} color={'#FFF'} loading={true} /></div>) 
-          : filterList.map((service) => <Card key={service.name} service={service} />)
+          : filterList.map((service) => <Card key={service.key} service={service} />)
         }
       </div>
     </div>
