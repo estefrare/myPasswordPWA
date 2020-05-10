@@ -33,3 +33,17 @@ export const setFingerPrint = (value: boolean) => action(
   TYPES.AuthActionConst.SET_FINGER_PRINT,
   value
 );
+
+export const signUpWithFirebaseFetching = () => action(
+  TYPES.AuthActionConst.SIGN_UP_FIREBASE_FETCHING,
+);
+
+export const signUpWithFirebaseFulfilled = (data: any) => action(
+  TYPES.AuthActionConst.SIGN_UP_FIREBASE_FULFILLED,
+  data,
+);
+
+export const signUpWithFirebaseRejected = (error: TYPES.FirebaseError) => action(
+  TYPES.AuthActionConst.SIGN_UP_FIREBASE_REJECTED,
+  error,
+);

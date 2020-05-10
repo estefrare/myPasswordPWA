@@ -6,6 +6,7 @@ const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthSta
   switch (action.type) {
     case AuthActionConst.LOGOUT_FETCHING:
     case AuthActionConst.LOGIN_FIREBASE_FETCHING:
+    case AuthActionConst.SIGN_UP_FIREBASE_FETCHING:
       return {
         ...initialState,
         isFetching: true,
@@ -21,10 +22,16 @@ const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthSta
           password: action.meta,
         }
       }
+    case AuthActionConst.SIGN_UP_FIREBASE_FULFILLED:
+      return {
+        ...state,
+        isFetching: false,
+      }
     case AuthActionConst.LOGOUT_FULFILLED:
       return initialState;
     case AuthActionConst.LOGOUT_REJECTED:
     case AuthActionConst.LOGIN_FIREBASE_REJECTED:
+    case AuthActionConst.SIGN_UP_FIREBASE_REJECTED:
       return {
         ...state,
         isFetching: false,

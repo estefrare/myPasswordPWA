@@ -11,7 +11,7 @@ export const getServices: any = () => async (dispatch: ThunkDispatch<DVPState, {
   dispatch(ACTIONS.getServicesFetching());
   try {
     const user = store.getState().auth.user;
-    const unsubscribe = await Firebase.firestore()
+    const unsubscribe = await Firebase.app.firestore()
       .collection('services')
       .where('userId', '==', user?.uid)
       .onSnapshot(async (querySnapshot: any) => {
@@ -41,7 +41,7 @@ export const editServices: any = (service: TYPES.Service) => async (dispatch: Th
   dispatch(ACTIONS.editServicesFetching());
   try {
     const user = store.getState().auth.user;
-    const ref = Firebase.firestore().collection('services').doc(service.key);
+    const ref = Firebase.app.firestore().collection('services').doc(service.key);
     await ref.update({
       name: service.name,
       username: service.username,
@@ -60,7 +60,7 @@ export const editServices: any = (service: TYPES.Service) => async (dispatch: Th
 export const deleteServices: any = (serviceId: TYPES.Service['key']) => async (dispatch: ThunkDispatch<DVPState, {}, AnyAction>) => {
   dispatch(ACTIONS.deleteServicesFetching());
   try {
-    await Firebase.firestore().collection('services').doc(serviceId).delete();
+    await Firebase.app.firestore().collection('services').doc(serviceId).delete();
     return dispatch(ACTIONS.deleteServicesFulfilled(serviceId));
   }
   catch (error) {
@@ -72,7 +72,7 @@ export const addServices: any = (service: TYPES.Service) => async (dispatch: Thu
   dispatch(ACTIONS.addServicesFetching());
   try {
     const user = store.getState().auth.user;
-    const ref = Firebase.firestore().collection('services');
+    const ref = Firebase.app.firestore().collection('services');
     const newService = await ref.add({
       name: service.name,
       username: service.username,

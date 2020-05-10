@@ -11,6 +11,11 @@ interface Props {
   close: () => void;
   callback: (params: any) => void;
   children?: React.ReactElement;
+  okButton?: {
+    title: string;
+    onClick: () => void;
+    onlyButton?: boolean
+  }
 }
 
 const ModalComponent = (props: Props) => {
@@ -23,6 +28,7 @@ const ModalComponent = (props: Props) => {
     callback,
     submitting,
     children,
+    okButton,
   } = props
 
   return (
@@ -45,15 +51,17 @@ const ModalComponent = (props: Props) => {
                 onClick={callback}
                 className={styles.button}
               >
-                Yes
+                {okButton ? okButton.title : 'Yes'}
               </Button>
-              <Button
-                disabled={submitting}
-                onClick={close} 
-                className={`${styles.button} ${styles.cancel}`}
-              >
-                Cancel
-              </Button>
+              {okButton?.onlyButton ? null : (
+                <Button
+                  disabled={submitting}
+                  onClick={close} 
+                  className={`${styles.button} ${styles.cancel}`}
+                  >
+                  Cancel
+                </Button>
+              )}
             </div>
           </div>
         </div>

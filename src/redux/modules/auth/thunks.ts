@@ -9,7 +9,7 @@ export const loginWithFirebase = (params: TYPES.LoginParams) =>
   async (dispatch: ThunkDispatch<DVPState, {}, AnyAction>) => {
     dispatch(ACTIONS.loginWithFirebaseFetching());
     try {
-      const response: any = await Firebase.auth().signInWithEmailAndPassword(params.email.trim(), params.password.trim());
+      const response: any = await Firebase.app.auth().signInWithEmailAndPassword(params.email.trim(), params.password.trim());
       return dispatch(ACTIONS.loginWithFirebaseFulfilled(response, params.password.trim()));
     }
     catch (error) {
@@ -21,10 +21,22 @@ export const logout: any = () => async (dispatch: ThunkDispatch<DVPState, {}, An
   dispatch(ACTIONS.logoutFetching());
   try {
     await localStorage.removeItem('users');
-    await Firebase.auth().signOut();
+    await Firebase.app.auth().signOut();
     return dispatch(ACTIONS.logoutFulfilled());
   }
   catch (error) {
     return dispatch(ACTIONS.logoutRejected(error));
   }
 };
+
+export const signUpWithFirebase = (params: TYPES.LoginParams) =>
+  async (dispatch: ThunkDispatch<DVPState, {}, AnyAction>) => {
+    dispatch(ACTIONS.signUpWithFirebaseFetching());
+    try {
+      const response: any = await Firebase.app.auth().createUserWithEmailAndPassword(params.email.trim(), params.password.trim())
+      return dispatch(ACTIONS.signUpWithFirebaseFulfilled(response));
+    }
+    catch (error) {
+      return dispatch(ACTIONS.signUpWithFirebaseRejected(error));
+    }
+  };
