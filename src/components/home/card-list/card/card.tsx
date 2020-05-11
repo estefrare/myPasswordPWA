@@ -18,16 +18,20 @@ interface InputProps extends FieldRenderProps<string, any> {
 
 const Input = (inputProps: InputProps) => {
   const { input, placeholder, className, readOnly } = inputProps
-  return <input
-    className={`${styles.input} ${className}`} 
-    readOnly={readOnly}
-    placeholder={placeholder} 
-    {...input}
-  />
-}
+  return (
+  <label className={styles.inputLabel}>
+    <input
+      className={`${styles.input} ${className}`} 
+      readOnly={readOnly}
+      placeholder={placeholder} 
+      {...input}
+    />
+  </label>
+)}
 
 export const Header = (props: Props) => {
 
+  const [ clipboard, setClipboard ] = useState('')
   const [ isDeletingMode, setDeleteMode ] = useState(false)
   const [ isShowingPassword, setShowPassword ] = useState(false)
   const [ isEditing, setEditMode ] = useState(false)
@@ -66,13 +70,9 @@ export const Header = (props: Props) => {
     }
   }, [isEditing, isAdding, cancelAdding, setEditMode])
 
-  const copyToClipboard = (text: string) => {
-    const textField = document.createElement('textarea');
-    textField.innerText = text;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();
+  const copyToClipboard = async (text: string) => {
+    await navigator.clipboard.writeText(text)
+    setClipboard(text)
   };
 
   return (
@@ -125,7 +125,12 @@ export const Header = (props: Props) => {
                     onClick={() => copyToClipboard(serviceValue.username)}
                     className={styles.trashButton}
                   >
-                    <i className="material-icons">file_copy</i>
+                    <i className="material-icons">
+                      {clipboard === serviceValue.username 
+                        ? 'check_circle'
+                        : 'file_copy'
+                      }
+                    </i>
                   </button>
                 )}
               </div>
@@ -150,7 +155,12 @@ export const Header = (props: Props) => {
                       onClick={() => copyToClipboard(serviceValue.password)}
                       className={styles.trashButton}
                     >
-                      <i className="material-icons">file_copy</i>
+                      <i className="material-icons">
+                      {clipboard === serviceValue.password 
+                        ? 'check_circle'
+                        : 'file_copy' 
+                      }
+                    </i>
                     </button>
                   </>
                 )

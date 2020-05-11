@@ -24,6 +24,11 @@
   padding: 15px;
 }
 
+.inputLabel {
+  height: 100%;
+  width: 100%;
+}
+
 .input {
   height: 100%;
   width: 100%;
