@@ -1,6 +1,7 @@
 import initialState from './initialState';
 import { Reducer } from 'redux';
 import { ServicesState, ServicesActionConst } from './types';
+import { AuthActionConst } from 'redux/modules/auth/types';
 
 const reducer: Reducer<ServicesState, any> = (state = initialState, action): ServicesState => {
   switch (action.type) {
@@ -71,6 +72,8 @@ const reducer: Reducer<ServicesState, any> = (state = initialState, action): Ser
           statusCode: action.payload.code,
         },
       };
+    case AuthActionConst.LOGOUT_FULFILLED:
+      return initialState;
     default:
       return state
   }

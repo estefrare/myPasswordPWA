@@ -46,7 +46,7 @@ export const Header = (props: ReduxProps) => {
           Logout
         </Button>
       </div>
-      <div className={styles.version}>v1.0.2</div>
+      <div className={styles.version}>v1.0.3</div>
     </div>
   )
 }
