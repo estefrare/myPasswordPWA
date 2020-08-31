@@ -1,6 +1,7 @@
 import initialState from './initialState';
 import { Reducer } from 'redux';
 import { AuthState, AuthActionConst } from './types';
+import { REHYDRATE } from 'redux-persist';
 
 const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthState => {
   switch (action.type) {
@@ -45,6 +46,17 @@ const reducer: Reducer<AuthState, any> = (state = initialState, action): AuthSta
         ...state,
         useFingerPrint: action.payload,
       }
+    case REHYDRATE:
+      if(action && action.payload && action.payload.auth) {
+        return {
+          ...action.payload.auth,
+          isFetching: initialState.isFetching,
+        };
+      }
+      return {
+        ...state,
+        isFetching: initialState.isFetching,
+      };
     default:
       return state
   }

@@ -7,6 +7,7 @@ import {
 import { connect } from  'react-redux';
 import { DVPState } from 'redux/modules';
 import PulseLoader from 'react-spinners/PulseLoader'
+import Firebase from 'helpers/firebase';
 import styles from './app.module.css';
 
 const Login = lazy(() => import('components/login'));
@@ -15,20 +16,24 @@ const Auth = lazy(() => import('components/auth'));
 const Home = lazy(() => import('components/home'));
 
 interface Props {
+  readonly user: DVPState['auth']['user'];
   readonly authenticated: DVPState['auth']['authenticated'];
 }
 
 export const App = (props: Props) => {
-  const { authenticated } = props
+  const { authenticated, user } = props
   const history = useHistory();
 
   useEffect(() => {
     if(authenticated) {
+      if(user) {
+        Firebase.app.analytics().setUserId(user.email)
+      }
       history.replace('/auth')
     } else {
       history.replace('/login')
     }
-  }, [authenticated, history])
+  }, [authenticated, history, user])
 
   return (
     <div className={styles.app}>
@@ -44,6 +49,9 @@ export const App = (props: Props) => {
   );
 }
 
-const mapStateToProps = (state: DVPState) => ({ authenticated: state.auth.authenticated })
+const mapStateToProps = (state: DVPState) => ({
+  user: state.auth.user,
+  authenticated: state.auth.authenticated,
+})
 
 export default connect(mapStateToProps)(App);
