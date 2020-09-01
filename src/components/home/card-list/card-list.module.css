@@ -3,29 +3,37 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
+  width: calc(100% - 2rem);
   min-height: 100vh;
 }
 
-.list {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
+.inputContainer {
+  width: calc(100% - 2rem);
+}
+
+.inputBlock{
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .input {
-  height: 100%;
-  width: 250px;
-  border: 0;
-  margin-bottom: 10px;
+  padding: 0px 15px;
+  height: 35px;
+  width: calc(100% - 34px);
   outline: none;
+  border-radius: 0px;
   font-size: 16px;
-  background-color: transparent;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: rgba(255, 255, 255, 0.596);
-  color: #FFF;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+  background-color: transparent !important;
+}
+
+.seachIcon {
+  position: absolute;
+  top: 7px;
+  right: 5px;
 }
 
 .loader {
@@ -33,4 +41,29 @@
   justify-content: center;
   align-items: center;
   height: 50vh;
+}
+
+.list {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1000px) {
+
+  .inputContainer {
+    padding-left: 0px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .list {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
 }

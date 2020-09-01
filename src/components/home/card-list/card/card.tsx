@@ -21,9 +21,9 @@ const Input = (inputProps: InputProps) => {
   return (
   <label className={styles.inputLabel}>
     <input
-      className={`${styles.input} ${className}`} 
+      className={`${styles.input} ${className}`}
       readOnly={readOnly}
-      placeholder={placeholder} 
+      placeholder={placeholder}
       {...input}
     />
   </label>
@@ -35,9 +35,9 @@ export const Header = (props: Props) => {
   const [ isDeletingMode, setDeleteMode ] = useState(false)
   const [ isShowingPassword, setShowPassword ] = useState(false)
   const [ isEditing, setEditMode ] = useState(false)
-  const { 
-    serviceValue, 
-    isDeleting, 
+  const {
+    serviceValue,
+    isDeleting,
     deleteServices,
     isAdding,
     cancelAdding,
@@ -95,38 +95,37 @@ export const Header = (props: Props) => {
         }}
         render={({ handleSubmit, form, values, submitting, pristine }) => (
           <>
-            <div className={styles.header}>
-              <Field 
-                name="name"
-                placeholder="Name"
-                type="text"
-                className={styles.inputHeader}
-                component={Input}
-                readOnly={!isEditing && !isAdding}
-              />
-              {!isAdding && (
-                <button onClick={() => setDeleteMode(true)} className={styles.trashButton}>
-                  <i className="material-icons">delete_outline</i>
-                </button>
-              )}
-            </div>
             <div className={styles.body}>
               <div className={styles.inputContainer}>
-                <Field 
-                  name="username"
-                  placeholder="Username"
+                <Field
+                  name="name"
+                  placeholder="Name"
                   type="text"
                   className={styles.inputHeader}
                   component={Input}
                   readOnly={!isEditing && !isAdding}
                 />
+                {!isAdding && !isEditing && (
+                  <button onClick={() => setDeleteMode(true)} className={styles.trashButton}>
+                    <i className="material-icons">delete_outline</i>
+                  </button>
+                )}
+              </div>
+              <div className={styles.inputContainer}>
+                <Field
+                  name="username"
+                  placeholder="Username"
+                  type="text"
+                  component={Input}
+                  readOnly={!isEditing && !isAdding}
+                />
                 { (!isEditing && !isAdding) && (
-                  <button 
+                  <button
                     onClick={() => copyToClipboard(serviceValue.username)}
                     className={styles.trashButton}
                   >
                     <i className="material-icons">
-                      {clipboard === serviceValue.username 
+                      {clipboard === serviceValue.username
                         ? 'check_circle'
                         : 'file_copy'
                       }
@@ -135,37 +134,36 @@ export const Header = (props: Props) => {
                 )}
               </div>
               <div className={styles.inputContainer}>
-                <Field 
+                <Field
                   name="password"
                   placeholder="Password"
                   type={(isShowingPassword || isEditing || isAdding) ? "text" : "password"}
-                  className={styles.inputHeader}
                   component={Input}
                   readOnly={!isEditing && !isAdding}
                 />
                 { (!isEditing && !isAdding) ? (
                   <>
-                    <button 
-                      onClick={() => setShowPassword(!isShowingPassword)} 
+                    <button
+                      onClick={() => setShowPassword(!isShowingPassword)}
                       className={styles.trashButton}
                     >
                       <i className="material-icons">{isShowingPassword ? 'visibility' : 'visibility_off'}</i>
                     </button>
-                    <button 
+                    <button
                       onClick={() => copyToClipboard(serviceValue.password)}
                       className={styles.trashButton}
                     >
                       <i className="material-icons">
-                      {clipboard === serviceValue.password 
+                      {clipboard === serviceValue.password
                         ? 'check_circle'
-                        : 'file_copy' 
+                        : 'file_copy'
                       }
                     </i>
                     </button>
                   </>
                 )
                 : (
-                  <button 
+                  <button
                     onClick={() => {
                       form.mutators.setValue('password', generatePassword());
                     }}
@@ -178,11 +176,10 @@ export const Header = (props: Props) => {
               </div>
               {((isEditing || isAdding) || serviceValue.link) && (
                 <div className={styles.inputContainer}>
-                  <Field 
+                  <Field
                     name="link"
                     placeholder="Link"
                     type={"text"}
-                    className={styles.inputHeader}
                     component={Input}
                     readOnly={!isEditing && !isAdding}
                   />
@@ -190,42 +187,53 @@ export const Header = (props: Props) => {
               )}
                {((isEditing || isAdding) || serviceValue.note) && (
                 <div className={styles.inputContainer}>
-                  <Field 
+                  <Field
                     name="note"
                     placeholder="Note"
                     type={"text"}
-                    className={styles.inputHeader}
                     component={Input}
                     readOnly={!isEditing && !isAdding}
                   />
                 </div>
               )}
               <div className={styles.buttonContainer}>
-                <Button
-                  disabled={
-                    (isEditing && pristine) 
-                    || submitting 
-                    || !values.name 
-                    || !values.username 
-                    || !values.password
-                  }
-                  submitting={submitting && isAddFetching}
-                  className={styles.editButton}
-                  onClick={(isEditing || isAdding) 
-                    ? handleSubmit
-                    : () => setEditMode(true)}
-                >
-                  {(isEditing || isAdding) ? 'Save' : 'Edit'}
-                </Button>
-                {(isEditing || isAdding) && (
-                  <Button
-                    disabled={submitting}
-                    className={`${styles.editButton} ${styles.cancelButton}`}
-                    onClick={handleCancel}
-                  >
-                    Cancel
-                  </Button>
-                )}
+                {!isEditing && !isAdding
+                  ? (
+                    <Button
+                      className={styles.editButton}
+                      onClick={() => setEditMode(true)}
+                      >
+                      Edit
+                    </Button>
+                  )
+                  : (
+                    <>
+                    <Button
+                      disabled={
+                        (isEditing && pristine)
+                        || submitting
+                        || !values.name
+                        || !values.username
+                        || !values.password
+                      }
+                      submitting={submitting && isAddFetching}
+                      className={`${styles.editButton} ${styles.saveButton}`}
+                      onClick={(isEditing || isAdding)
+                        ? handleSubmit
+                        : () => setEditMode(true)}
+                    >
+                      {(isEditing || isAdding) ? 'Save' : 'Edit'}
+                    </Button>
+                    <Button
+                      disabled={submitting}
+                      className={styles.editButton}
+                      onClick={handleCancel}
+                    >
+                      Cancel
+                    </Button>
+                    </>
+                  )
+                }
               </div>
             </div>
           </>

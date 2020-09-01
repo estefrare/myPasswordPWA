@@ -1,5 +1,5 @@
 import React from 'react';
-import PulseLoader from 'react-spinners/PulseLoader'
+import BarLoader from 'react-spinners/BarLoader'
 import styles from './button.module.css';
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 
 export const Button = (props: Props) => {
 
-  const { 
+  const {
     type = 'button',
     children,
     disabled,
@@ -23,18 +23,19 @@ export const Button = (props: Props) => {
   } = props
 
   return (
-    <button 
+    <button
       type={type}
       disabled={disabled || submitting}
       className={`${styles.button} ${className}`}
       onClick={onClick}
     >
-      {submitting 
-        ? (<PulseLoader
-            size={5}
-            color={'#292724'}
+      {submitting
+        ? (<BarLoader
+            height={2}
+            width={'70%'}
+            color={'#fafafa'}
             loading={true}
-          />) 
+          />)
         : children
       }
     </button>

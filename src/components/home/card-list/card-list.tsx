@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Card from './card'
-import PulseLoader from 'react-spinners/PulseLoader'
+import ScaleLoader from 'react-spinners/ScaleLoader'
 import { ReduxProps } from '.'
 import styles from './card-list.module.css'
 
@@ -21,18 +21,32 @@ export const CardList = (props: ReduxProps) => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <input
-          placeholder="Search"
-          className={styles.input}
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)} 
+      <div className={styles.inputContainer}>
+        <div className={styles.inputBlock}>
+          <input
+            placeholder="Search"
+            className={styles.input}
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
           />
-        <i className="material-icons">search</i>
+          <div className={styles.seachIcon}>
+            <i className="material-icons">search</i>
+          </div>
+        </div>
       </div>
       <div className={styles.list}>
         {isFetching && filterList.length === 0
-          ? (<div className={styles.loader}><PulseLoader size={10} color={'#FFF'} loading={true} /></div>) 
+          ? (
+            <div className={styles.loader}>
+              <ScaleLoader
+                height={35}
+                width={4}
+                radius={2}
+                color={'#fafafa'}
+                loading={true}
+              />
+            </div>
+          )
           : filterList.map((service) => <Card key={service.key} service={service} />)
         }
       </div>

@@ -10,10 +10,10 @@ const PurpleSwitch = withStyles({
   switchBase: {
     color: '#F5F5F5',
     '&$checked': {
-      color: '#292724',
+      color: '#fafafa',
     },
     '&$checked + $track': {
-      backgroundColor: '#292724',
+      backgroundColor: '#202020',
     },
   },
   checked: {},
@@ -29,7 +29,7 @@ export const Header = (props: ReduxProps) => {
       webAuthnSignup(email)
     }
   }, [useFingerPrint, email])
-  
+
   return (
     <div className={styles.container}>
       <div>
@@ -46,7 +46,7 @@ export const Header = (props: ReduxProps) => {
           Logout
         </Button>
       </div>
-      <div className={styles.version}>v1.0.4</div>
+      <div className={styles.version}>v2.0.0</div>
     </div>
   )
 }

@@ -1,14 +1,11 @@
 .container {
-  position: fixed;
-  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 30px);
   height: 50px;
-  box-shadow: var(--button-shadow);
-  background-color: var(--color-yellow);
+  padding: 10px 15px;
 }
 
 .logout {
@@ -20,16 +17,13 @@
 }
 
 .optionText {
-  margin-left: 20px;
-  color: var(--color-back);
+  text-transform: uppercase;
+  color: var(--color-white);
 }
 
 .version {
   position: absolute;
-  bottom: -17px;
-  right: 1px;
+  bottom: 5px;
+  right: 50%;
   font-size: 11px;
-  padding: 2px;
-  background: var(--color-back);
-  border-bottom-left-radius: 5px;
 }

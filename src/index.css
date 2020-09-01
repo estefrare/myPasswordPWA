@@ -3,12 +3,16 @@
 :root {
   --button-shadow: -4px 4px 6px -2px rgba(0,0,0,0.2);
   --color-yellow: #F9AC19;
-  --color-back: #292724;
+  --color-black: #202020;
+  --color-black-hard: #131313;
   --color-grey: #B1B0AF;
+  --color-white: #fafafa;
+  --color-red: #F67372;
 }
 
+
 body {
-  background-color: var(--color-back);
+  background-color: var(--color-black);
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,9 +24,7 @@ code {
 }
 
 * {
-  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: Montserrat,Helvetica,Arial,sans-serif;
   border: none;
 }
 
@@ -36,4 +38,8 @@ button,
 select,
 a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+#tsparticles {
+  height: 100vh;
 }

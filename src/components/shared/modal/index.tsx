@@ -20,9 +20,9 @@ interface Props {
 
 const ModalComponent = (props: Props) => {
 
-  const { 
-    open, 
-    title, 
+  const {
+    open,
+    title,
     detail,
     close,
     callback,
@@ -38,10 +38,11 @@ const ModalComponent = (props: Props) => {
   >
     {children || (
         <div className={styles.modal}>
-          <div className={styles.modalHeader}>
-            {title}
-          </div>
           <div className={styles.body}>
+            <div className={styles.title}>
+              {title}
+            </div>
+            <div className={styles.line} />
             <div className={styles.detail}>
               {detail}
             </div>
@@ -56,8 +57,8 @@ const ModalComponent = (props: Props) => {
               {okButton?.onlyButton ? null : (
                 <Button
                   disabled={submitting}
-                  onClick={close} 
-                  className={`${styles.button} ${styles.cancel}`}
+                  onClick={close}
+                  className={styles.button}
                   >
                   Cancel
                 </Button>

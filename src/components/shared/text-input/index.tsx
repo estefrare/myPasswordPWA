@@ -19,11 +19,11 @@ export const TextInput = (props: Props) => {
             {label}
           </span>
         )}
-        <input 
-          className={styles.input} 
+        <input
+          className={styles.input}
           type="text"
           placeholder={placeholder}
-          {...input} 
+          {...input}
         />
       </label>
       <div className={styles.error}>

@@ -5,9 +5,10 @@ import Button from 'components/shared/button'
 import { FORM_ERROR } from 'final-form';
 import { useHistory } from "react-router-dom";
 import { ReduxProps } from '.';
+import Animation from 'components/shared/animation'
 import styles from './login.module.css'
 
-export const Login = (props: ReduxProps) => { 
+export const Login = (props: ReduxProps) => {
   const { isFetching } = props
   const history = useHistory();
 
@@ -43,60 +44,61 @@ export const Login = (props: ReduxProps) => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.logoContainer}>
-        <div className={styles.logoTitle}>
-          MyPassword
+    <div className={styles.page}>
+      <div className={styles.container}>
+        <div className={styles.logoContainer}>
+          <h2 className={styles.logoTitle}>
+            MyPassword
+          </h2>
+          <h6 className={styles.logoSubtitle}>
+            Keep all your passwords in one place
+          </h6>
         </div>
-        <div className={styles.logoSubtitle}>
-          Keep all your passwords in one place
+        <Form
+          onSubmit={onSubmit}
+          render={({ handleSubmit, submitError, values }) => (
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <Field
+                name="email"
+                placeholder="Insert your email"
+                type="text"
+                label="email"
+                component={TextInput}
+              />
+              <Field
+                name="password"
+                placeholder="Insert your password"
+                type="password"
+                label="password"
+                component={TextInput}
+              />
+              <div className={styles.buttons}>
+                  <Button
+                    type="submit"
+                    disabled={isFetching || !values.email || !values.password}
+                    submitting={isFetching}
+                    >
+                    Login
+                  </Button>
+                  <Button
+                    onClick={() => history.push('sign-up')}
+                  >
+                    Sign Up
+                  </Button>
+              </div>
+              <div className={styles.error}>
+                {submitError}
+              </div>
+            </form>
+          )}
+        />
+        <div className={styles.message}>
+          Your password is used to encrypt the other passwords stored in the database.
+          <br/>
+          If you forget this password, you will not be able to recover the other passwords.
         </div>
       </div>
-      <Form
-        onSubmit={onSubmit}
-        render={({ handleSubmit, submitError, values }) => (
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <Field 
-              name="email"
-              placeholder="Email"
-              type="text"
-              component={TextInput}
-            />
-            <Field 
-              name="password"
-              placeholder="Password"
-              type="password"
-              component={TextInput} 
-            />
-            <div className={styles.button}>
-              <Button 
-                type="submit"
-                disabled={isFetching || !values.email || !values.password}
-                submitting={isFetching}
-                >
-                Login
-              </Button>
-            </div>
-            <div className={styles.button}>
-              <Button 
-                className={styles.signUButton}
-                onClick={() => history.push('sign-up')}
-              >
-                Sign Up
-              </Button>
-            </div>
-            <div className={styles.error}>
-              {submitError}
-            </div>
-          </form>
-        )}
-      />
-
-      <div className={styles.message}>
-        Your password is used to encrypt the other passwords stored in the database.
-        <br/>
-        If you forget this password, you will not be able to recover the other passwords.
-      </div>
+      <Animation />
     </div>
   )
 }
