@@ -1,19 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-:root {
-  --button-shadow: -4px 4px 6px -2px rgba(0,0,0,0.2);
-  --color-yellow: #F9AC19;
-  --color-black: #202020;
-  --color-black-hard: #131313;
-  --color-grey: #B1B0AF;
-  --color-white: #fafafa;
-  --color-red: #F67372;
-}
-
-
 body {
-  background-color: var(--color-black);
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -21,25 +10,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-* {
-  font-family: Montserrat,Helvetica,Arial,sans-serif;
-  border: none;
-}
-
-*:focus {
-  outline-width: 0;
-}
-
-input,
-textarea,
-button,
-select,
-a {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
-#tsparticles {
-  height: 100vh;
 }
