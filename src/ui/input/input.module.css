@@ -1,0 +1,19 @@
+.input {
+  margin: 10px 0;
+  width: calc(100% - 22px);
+  height: 46px;
+  padding-left: 20px;
+  border-radius: 20px;
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--input-color);
+  outline: none;
+  appearance: none;
+}
+
+.input::placeholder {
+  text-transform: capitalize;
+}
