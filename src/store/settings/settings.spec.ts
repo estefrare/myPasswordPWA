@@ -1,35 +1,24 @@
-// import counterReducer, {
-//     CounterState,
-//     increment,
-//     decrement,
-//     incrementByAmount,
-//   } from './loginSlice';
-  
-//   describe('counter reducer', () => {
-//     const initialState: CounterState = {
-//       value: 3,
-//       status: 'idle',
-//     };
-//     it('should handle initial state', () => {
-//       expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
-//         value: 0,
-//         status: 'idle',
-//       });
-//     });
-  
-//     it('should handle increment', () => {
-//       const actual = counterReducer(initialState, increment());
-//       expect(actual.value).toEqual(4);
-//     });
-  
-//     it('should handle decrement', () => {
-//       const actual = counterReducer(initialState, decrement());
-//       expect(actual.value).toEqual(2);
-//     });
-  
-//     it('should handle incrementByAmount', () => {
-//       const actual = counterReducer(initialState, incrementByAmount(2));
-//       expect(actual.value).toEqual(5);
-//     });
-//   });
-  
+import settingsReducer, { setDarkMode } from 'store/settings/reducer';
+import { SettingsState } from 'types';
+
+describe('Settings reducer', () => {
+  const initialState: SettingsState = {
+    darkMode: false,
+  };
+
+  it('should handle initial state', () => {
+    expect(settingsReducer(undefined, { type: 'unknown' })).toEqual({
+      darkMode: false,
+    });
+  });
+
+  it('should set dark mode true', () => {
+    const actual = settingsReducer(initialState, setDarkMode());
+    expect(actual.darkMode).toEqual(true);
+  });
+
+  it('should set dark mode false', () => {
+    const actual = settingsReducer({ darkMode: true }, setDarkMode());
+    expect(actual.darkMode).toEqual(false);
+  });
+});

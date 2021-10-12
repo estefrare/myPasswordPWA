@@ -4,6 +4,17 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import App from './App';
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+    return {
+      t: (str: string) => str,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
+  },
+}));
+
 test('renders learn react link', () => {
   const { getByText } = render(
     <Provider store={store}>
@@ -11,5 +22,5 @@ test('renders learn react link', () => {
     </Provider>
   );
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+  expect(getByText(/login/i)).toBeInTheDocument();
 });

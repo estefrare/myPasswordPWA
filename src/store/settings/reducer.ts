@@ -6,7 +6,7 @@ const initialState: SettingsState = {
 };
 
 export const settingsSlice = createSlice({
-  name: 'auth',
+  name: 'settings',
   initialState,
   reducers: {
     setDarkMode: (state) => {

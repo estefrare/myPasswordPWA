@@ -1,6 +1,6 @@
 
 import React from 'react';
-import PropagateLoader from "react-spinners/PropagateLoader";
+import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from './button.module.css';
 
 interface Props {

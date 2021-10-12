@@ -1,35 +1,25 @@
-// import counterReducer, {
-//     CounterState,
-//     increment,
-//     decrement,
-//     incrementByAmount,
-//   } from './loginSlice';
-  
-//   describe('counter reducer', () => {
-//     const initialState: CounterState = {
-//       value: 3,
-//       status: 'idle',
-//     };
-//     it('should handle initial state', () => {
-//       expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
-//         value: 0,
-//         status: 'idle',
-//       });
-//     });
-  
-//     it('should handle increment', () => {
-//       const actual = counterReducer(initialState, increment());
-//       expect(actual.value).toEqual(4);
-//     });
-  
-//     it('should handle decrement', () => {
-//       const actual = counterReducer(initialState, decrement());
-//       expect(actual.value).toEqual(2);
-//     });
-  
-//     it('should handle incrementByAmount', () => {
-//       const actual = counterReducer(initialState, incrementByAmount(2));
-//       expect(actual.value).toEqual(5);
-//     });
-//   });
-  
+import authReducer from 'store/auth/reducer';
+import { login } from 'store/auth/thunks';
+import { AuthState } from 'types';
+
+describe('Auth reducer', () => {
+  const initialState: AuthState = {
+    isFetching: false,
+    credentials: undefined,
+    isAuthenticated: false,
+    user: undefined,
+  };
+
+  it('should handle initial state', () => {
+    expect(authReducer(undefined, { type: 'unknown' })).toEqual(initialState);
+  });
+
+  it('should set isFetching true', () => {
+    const action = login.pending("", { email: 'test', password: 'test' });
+    expect(authReducer(initialState, action)).toStrictEqual({
+      ...initialState,
+      isFetching: true,
+    });
+  });
+
+});

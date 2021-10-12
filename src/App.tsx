@@ -1,5 +1,4 @@
 import React from 'react';
-import { Login } from './screens/login/Login';
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,6 +8,7 @@ import {
 import './App.css';
 import { useAppSelector } from 'app/hooks';
 import { selectDarkMode } from 'store/settings/selectors';
+import { Login } from './screens/login/Login';
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Router>
-      <div className={`App ${darkMode ? 'dark': 'light' }`}>
+      <div className={darkMode ? 'dark': 'light'}>
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/home">

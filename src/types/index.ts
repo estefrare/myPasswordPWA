@@ -9,7 +9,7 @@ export interface AuthState {
   isFetching: boolean,
   credentials?: Credentials,
   isAuthenticated: boolean,
-  user: firebase.UserInfo | null | undefined,
+  user: firebase.User | null | undefined,
 }
 
 export interface SettingsState {
