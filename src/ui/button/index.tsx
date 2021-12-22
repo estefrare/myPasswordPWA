@@ -1,19 +1,21 @@
 
 import React from 'react';
+import cx from 'classnames'
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from './button.module.css';
 
 interface Props {
-  disabled: boolean;
+  disabled?: boolean;
   onClick: () => void;
   children: React.ReactChild,
   isLoading?: boolean,
+  styles?: string;
 }
 
 const Button = (props: Props) => {
   return (
     <button
-      className={styles.button}
+      className={cx(styles.button, props.styles)}
       disabled={props.disabled || props.isLoading}
       onClick={props.onClick}
     >

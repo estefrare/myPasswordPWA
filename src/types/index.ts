@@ -10,6 +10,7 @@ export interface AuthState {
   credentials?: Credentials,
   isAuthenticated: boolean,
   user: firebase.User | null | undefined,
+  error: string,
 }
 
 export interface SettingsState {

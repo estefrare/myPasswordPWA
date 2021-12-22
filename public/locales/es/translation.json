@@ -1,6 +1,7 @@
 {
-    "welcome": "¡bienvenido!",
-    "email": "e-mail",
-    "password": "password",
-    "login": "iniciar sesión"
-  }
+  "welcome": "¡bienvenido!",
+  "email": "e-mail",
+  "password": "password",
+  "login": "iniciar sesión",
+  "close": "cerrar"
+}

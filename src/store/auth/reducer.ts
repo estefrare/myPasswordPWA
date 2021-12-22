@@ -6,13 +6,18 @@ const initialState: AuthState = {
   isFetching: false,
   credentials: undefined,
   isAuthenticated: false,
-  user: undefined,
+  user: null,
+  error: ''
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    cleanError: (state) => {
+      state.error = initialState.error;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
@@ -22,9 +27,16 @@ export const authSlice = createSlice({
         state.isFetching = false;
         state.isAuthenticated = true;
         state.credentials = action.meta.arg;
-        state.user = action.payload;
+        // state.user = action.payload;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isFetching = false;
+        state.isAuthenticated = false;
+        // state.error = action.payload;
       });
   },
 });
+
+export const { cleanError } = authSlice.actions;
 
 export default authSlice.reducer;

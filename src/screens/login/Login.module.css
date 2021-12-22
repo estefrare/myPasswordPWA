@@ -53,7 +53,7 @@
   font-family: Lato;
   font-size: 22px;
   font-weight: 300;
-  color: #141414;
+  color: var(--page-background);
 }
 
 .form {
@@ -70,7 +70,7 @@
   font-size: 22px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-opossite);
+  color: var(--text-opposite);
 }
 
 .setTheme {

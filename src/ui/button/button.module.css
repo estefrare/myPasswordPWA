@@ -8,8 +8,9 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 17px;
-  color: #FFFFFF;
+  color: var(--white-color);
   text-transform: uppercase;
   border-style: none;
+  cursor: pointer;
   background: linear-gradient(180deg, #370BF0 0%, #F020D8 148%);
 }

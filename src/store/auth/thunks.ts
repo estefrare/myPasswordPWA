@@ -4,13 +4,13 @@ import { Credentials } from 'types'
 
 export const login = createAsyncThunk(
   'auth/login',
-  async (credentials: Credentials) => {
+  async (credentials: Credentials, { rejectWithValue }) => {
     try {
       const response = await makeLogin(credentials);
       return response.user;
     }
     catch(error) {
-      console.log(error)
+      return rejectWithValue(error)
     }
   }
 );

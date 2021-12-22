@@ -9,8 +9,8 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    debug: true,
-    react: { 
+    debug: false,
+    react: {
       useSuspense: false,
     },
     interpolation: {
