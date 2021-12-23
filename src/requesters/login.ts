@@ -6,4 +6,3 @@ export function makeLogin(credentials: Credentials): Promise<firebase.auth.UserC
   return Firebase.auth()
     .signInWithEmailAndPassword(credentials.email, credentials.password)
 }
-  
