@@ -3,6 +3,8 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { login } from 'store/auth/thunks';
 import { useTranslation } from 'react-i18next';
 
+import packageJson from '../../../package.json';
+
 import { selectError, selectFetching } from 'store/auth/selectors';
 import Button from 'ui/button';
 import Input from 'ui/input';
@@ -18,7 +20,7 @@ import styles from 'screens/login/Login.module.css';
 export function Login () {
   const { t } = useTranslation();
   const isFetching = useAppSelector(selectFetching);
-  const loginError = useAppSelector(selectError);
+  const error = useAppSelector(selectError);
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('frare.esteban+test@gmail.com');
   const [password, setPassword] = useState('test123');
@@ -26,8 +28,9 @@ export function Login () {
   return (
     <>
       <Modal
-        show={!!loginError}
-        title={'hola'}
+        show={!!error}
+        title={t('error')}
+        message={t(error?.code || '')}
         close={{
           callback: () => dispatch(cleanError())
         }}
@@ -69,6 +72,7 @@ export function Login () {
             </Button>
           </div>
         </div>
+        <p className={styles.version}>{packageJson.version}</p>
         <Theme className={styles.setTheme} onClick={() => dispatch(setDarkMode())} />
       </div>
     </>

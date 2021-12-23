@@ -8,7 +8,8 @@ import styles from 'ui/modal/modal.module.css';
 
 interface Props {
   show: boolean;
-  title: string;
+  title?: string;
+  message?: string;
   close?: {
     callback: () => void;
     label?: string;
@@ -24,7 +25,8 @@ const Modal = (props: Props) => {
     <div className={styles.container}>
       <div className={styles.modal}>
         <div className={styles.title}>{props.title}</div>
-        <CloseIcon className={styles.closeIcon} />
+        <CloseIcon className={styles.closeIcon} onClick={props.close?.callback}/>
+        <p>{props.message}</p>
         {props.close && (
           <Button
             styles={styles.button}

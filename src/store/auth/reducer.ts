@@ -8,7 +8,7 @@ const initialState: AuthState = {
   credentials: undefined,
   isAuthenticated: false,
   user: null,
-  error: ''
+  error: undefined
 };
 
 export const authSlice = createSlice({
@@ -16,7 +16,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     cleanError: (state) => {
-      state.error = initialState.error;
+      return { ...state, error: undefined };
     }
   },
   extraReducers: (builder) => {
@@ -28,12 +28,12 @@ export const authSlice = createSlice({
         state.isFetching = false;
         state.isAuthenticated = true;
         state.credentials = action.meta.arg;
-        // state.user = action.payload;
+        state.user = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         state.isFetching = false;
         state.isAuthenticated = false;
-        // state.error = action.payload;
+        state.error = action.payload;
       });
   }
 });

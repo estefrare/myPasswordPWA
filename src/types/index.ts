@@ -9,8 +9,8 @@ export interface AuthState {
   isFetching: boolean,
   credentials?: Credentials,
   isAuthenticated: boolean,
-  user: firebase.User | null | undefined,
-  error: string,
+  user: firebase.auth.UserCredential['user'] | null | undefined,
+  error?: firebase.FirebaseError
 }
 
 export interface SettingsState {

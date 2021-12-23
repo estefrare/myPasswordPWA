@@ -80,3 +80,8 @@
   height: 20px;
   color: var(--theme-icon);
 }
+
+.version {
+  font-family: Raleway;
+  color: var(--theme-icon);
+}
