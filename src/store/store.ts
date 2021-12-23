@@ -12,6 +12,7 @@ import {
   persistStore
 } from 'redux-persist';
 
+import accountsReducer from 'store/accounts/reducer';
 import authReducer from 'store/auth/reducer';
 import settingsReducer from 'store/settings/reducer';
 import storage from 'redux-persist/lib/storage';
@@ -24,7 +25,8 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, combineReducers({
   settings: settingsReducer,
-  auth: authReducer
+  auth: authReducer,
+  accounts: accountsReducer
 }));
 
 export const store = configureStore({

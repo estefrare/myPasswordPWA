@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { getAccounts } from 'store/accounts/thunks';
 import { logout } from 'store/auth/thunks';
 
-import { selectAuthenticated, selectFetching } from 'store/auth/selectors';
+import { selectAuthenticated, selectFetching, selectUser } from 'store/auth/selectors';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { selectAccounts } from 'store/accounts/selectors';
 import { useTranslation } from 'react-i18next';
 
 import Button from 'ui/button';
@@ -17,6 +19,8 @@ export function Dashboard () {
 
   const isFetching = useAppSelector(selectFetching);
   const isAuthenticated = useAppSelector(selectAuthenticated);
+  const user = useAppSelector(selectUser);
+  const accounts = useAppSelector(selectAccounts);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -27,6 +31,16 @@ export function Dashboard () {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{t('dashboard')}</h1>
+      <Button
+        isLoading={isFetching}
+        disabled={isFetching}
+        onClick={() => dispatch(getAccounts(user?.uid))}
+      >
+        <span>test</span>
+      </Button>
+      <ol>
+        {accounts.map((item) => <li key={item.password}>{item.password}</li>)}
+      </ol>
       <Button
         isLoading={isFetching}
         disabled={isFetching}

@@ -9,6 +9,7 @@ const initialState: AuthState = {
   credentials: undefined,
   isAuthenticated: false,
   user: null,
+  password: undefined,
   error: undefined
 };
 
@@ -30,6 +31,7 @@ export const authSlice = createSlice({
         state.isAuthenticated = true;
         state.credentials = action.meta.arg;
         state.user = action.payload;
+        state.password = action.meta.arg.password;
       })
       .addCase(login.rejected, (state, action) => {
         state.isFetching = false;
