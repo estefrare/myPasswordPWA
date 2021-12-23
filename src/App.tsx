@@ -1,14 +1,16 @@
 import React from 'react';
+
 import {
-  BrowserRouter as Router,
-  Switch,
   Redirect,
-  Route
+  Route,
+  BrowserRouter as Router,
+  Switch
 } from 'react-router-dom';
-import './App.css';
-import { useAppSelector } from 'app/hooks';
+
+import 'App.css';
+import { Login } from 'screens/login/Login';
 import { selectDarkMode } from 'store/settings/selectors';
-import { Login } from './screens/login/Login';
+import { useAppSelector } from 'app/hooks';
 
 function App () {
   const darkMode = useAppSelector(selectDarkMode);

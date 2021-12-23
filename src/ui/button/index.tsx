@@ -1,8 +1,8 @@
 
+import PropagateLoader from 'react-spinners/PropagateLoader';
 import React from 'react';
 import cx from 'classnames';
-import PropagateLoader from 'react-spinners/PropagateLoader';
-import styles from './button.module.css';
+import styles from 'ui/button/button.module.css';
 
 interface Props {
   disabled?: boolean;

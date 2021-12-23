@@ -1,18 +1,20 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
+
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+
 import authReducer from 'store/auth/reducer';
 import settingsReducer from 'store/settings/reducer';
+import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
   key: 'root',

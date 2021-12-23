@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as CloseIcon } from 'assets/images/close.svg';
+
 import Button from 'ui/button';
-import styles from './modal.module.css';
+import { ReactComponent as CloseIcon } from 'assets/images/close.svg';
+import styles from 'ui/modal/modal.module.css';
 
 interface Props {
   show: boolean;

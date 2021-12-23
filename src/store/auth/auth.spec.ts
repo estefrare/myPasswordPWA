@@ -1,5 +1,6 @@
 import authReducer from 'store/auth/reducer';
 import { login } from 'store/auth/thunks';
+
 import { AuthState } from 'types';
 
 describe('Auth reducer', () => {

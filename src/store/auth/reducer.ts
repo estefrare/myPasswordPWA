@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { login } from 'store/auth/thunks';
+
 import { AuthState } from 'types';
 
 const initialState: AuthState = {

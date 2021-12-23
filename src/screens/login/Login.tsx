@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { login } from 'store/auth/thunks';
 import { useTranslation } from 'react-i18next';
-import { selectFetching, selectError } from 'store/auth/selectors';
-import Modal from 'ui/modal';
+
+import { selectError, selectFetching } from 'store/auth/selectors';
 import Button from 'ui/button';
 import Input from 'ui/input';
-import styles from './Login.module.css';
-import brand from 'assets/images/login-background.png';
-import logo from 'assets/images/login-logo.png';
-import keyIcon from 'assets/images/key.png';
+import Modal from 'ui/modal';
 import { ReactComponent as Theme } from 'assets/images/circle-half-stroke-solid.svg';
-import { setDarkMode } from 'store/settings/reducer';
+import brand from 'assets/images/login-background.png';
 import { cleanError } from 'store/auth/reducer';
+import keyIcon from 'assets/images/key.png';
+import logo from 'assets/images/login-logo.png';
+import { setDarkMode } from 'store/settings/reducer';
+import styles from 'screens/login/Login.module.css';
 
 export function Login () {
   const { t } = useTranslation();
