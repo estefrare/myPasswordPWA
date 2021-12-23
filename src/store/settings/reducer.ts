@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { SettingsState } from 'types'
+import { SettingsState } from 'types';
 
 const initialState: SettingsState = {
-  darkMode: false,
+  darkMode: false
 };
 
 export const settingsSlice = createSlice({
@@ -13,7 +13,7 @@ export const settingsSlice = createSlice({
       state.darkMode = !state.darkMode;
     }
   },
-  extraReducers: () => {},
+  extraReducers: () => {}
 });
 
 export const { setDarkMode } = settingsSlice.actions;

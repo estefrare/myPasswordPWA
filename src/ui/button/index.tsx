@@ -1,6 +1,6 @@
 
 import React from 'react';
-import cx from 'classnames'
+import cx from 'classnames';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from './button.module.css';
 
@@ -19,12 +19,12 @@ const Button = (props: Props) => {
       disabled={props.disabled || props.isLoading}
       onClick={props.onClick}
     >
-      {props.isLoading 
-        ? <PropagateLoader  color="#FFF" loading size={5} /> 
+      {props.isLoading
+        ? <PropagateLoader color="#FFF" loading size={5} />
         : props.children
       }
     </button>
   );
-}
+};
 
-export default Button
+export default Button;

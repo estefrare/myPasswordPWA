@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import {
   persistStore,
   persistReducer,
@@ -8,22 +8,22 @@ import {
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+  REGISTER
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import authReducer from 'store/auth/reducer';
 import settingsReducer from 'store/settings/reducer';
 
 const persistConfig = {
   key: 'root',
   version: 1,
-  storage,
-}
+  storage
+};
 
 const persistedReducer = persistReducer(persistConfig, combineReducers({
   settings: settingsReducer,
-  auth: authReducer,
-}))
+  auth: authReducer
+}));
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -37,13 +37,13 @@ export const store = configureStore({
           PAUSE,
           PERSIST,
           PURGE,
-          REGISTER],
-      },
+          REGISTER]
+      }
     }),
-  reducer: persistedReducer,
+  reducer: persistedReducer
 });
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

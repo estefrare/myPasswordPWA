@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as CloseIcon } from 'assets/images/close.svg'
-import Button from 'ui/button'
+import { ReactComponent as CloseIcon } from 'assets/images/close.svg';
+import Button from 'ui/button';
 import styles from './modal.module.css';
 
 interface Props {
@@ -16,8 +16,8 @@ interface Props {
 
 const Modal = (props: Props) => {
   const { t } = useTranslation();
-  if(!props.show) {
-    return null
+  if (!props.show) {
+    return null;
   }
   return (
     <div className={styles.container}>
@@ -37,6 +37,6 @@ const Modal = (props: Props) => {
       </div>
     </div>
   );
-}
+};
 
-export default Modal
+export default Modal;

@@ -10,10 +10,9 @@ interface Props {
 }
 
 const Input = (props: Props) => {
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    props.onChange(e.target.value)
-  }
+    props.onChange(e.target.value);
+  };
 
   return (
     <input
@@ -22,6 +21,6 @@ const Input = (props: Props) => {
       onChange={onChange}
     />
   );
-}
+};
 
-export default Input
+export default Input;

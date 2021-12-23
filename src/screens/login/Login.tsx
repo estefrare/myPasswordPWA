@@ -2,31 +2,31 @@ import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { login } from 'store/auth/thunks';
 import { useTranslation } from 'react-i18next';
-import { selectFetching, selectError } from 'store/auth/selectors'
-import Modal from 'ui/modal'
-import Button from 'ui/button'
-import Input from 'ui/input'
+import { selectFetching, selectError } from 'store/auth/selectors';
+import Modal from 'ui/modal';
+import Button from 'ui/button';
+import Input from 'ui/input';
 import styles from './Login.module.css';
-import brand from 'assets/images/login-background.png'
-import logo from 'assets/images/login-logo.png'
-import keyIcon from 'assets/images/key.png'
-import { ReactComponent as Theme } from 'assets/images/circle-half-stroke-solid.svg'
+import brand from 'assets/images/login-background.png';
+import logo from 'assets/images/login-logo.png';
+import keyIcon from 'assets/images/key.png';
+import { ReactComponent as Theme } from 'assets/images/circle-half-stroke-solid.svg';
 import { setDarkMode } from 'store/settings/reducer';
 import { cleanError } from 'store/auth/reducer';
 
-export function Login() {
+export function Login () {
   const { t } = useTranslation();
   const isFetching = useAppSelector(selectFetching);
   const loginError = useAppSelector(selectError);
   const dispatch = useAppDispatch();
-  const [email, setEmail] = useState("frare.esteban+test@gmail.com");
-  const [password, setPassword] = useState("test123");
+  const [email, setEmail] = useState('frare.esteban+test@gmail.com');
+  const [password, setPassword] = useState('test123');
 
   return (
     <>
       <Modal
         show={!!loginError}
-        title={"hola"}
+        title={'hola'}
         close={{
           callback: () => dispatch(cleanError())
         }}

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login } from 'store/auth/thunks'
-import { AuthState } from 'types'
+import { login } from 'store/auth/thunks';
+import { AuthState } from 'types';
 
 const initialState: AuthState = {
   isFetching: false,
@@ -34,7 +34,7 @@ export const authSlice = createSlice({
         state.isAuthenticated = false;
         // state.error = action.payload;
       });
-  },
+  }
 });
 
 export const { cleanError } = authSlice.actions;

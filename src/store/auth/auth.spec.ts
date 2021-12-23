@@ -7,7 +7,7 @@ describe('Auth reducer', () => {
     isFetching: false,
     credentials: undefined,
     isAuthenticated: false,
-    user: undefined,
+    user: undefined
   };
 
   it('should handle initial state', () => {
@@ -15,11 +15,10 @@ describe('Auth reducer', () => {
   });
 
   it('should set isFetching true', () => {
-    const action = login.pending("", { email: 'test', password: 'test' });
+    const action = login.pending('', { email: 'test', password: 'test' });
     expect(authReducer(initialState, action)).toStrictEqual({
       ...initialState,
-      isFetching: true,
+      isFetching: true
     });
   });
-
 });

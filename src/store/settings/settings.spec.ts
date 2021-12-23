@@ -3,12 +3,12 @@ import { SettingsState } from 'types';
 
 describe('Settings reducer', () => {
   const initialState: SettingsState = {
-    darkMode: false,
+    darkMode: false
   };
 
   it('should handle initial state', () => {
     expect(settingsReducer(undefined, { type: 'unknown' })).toEqual({
-      darkMode: false,
+      darkMode: false
     });
   });
 
