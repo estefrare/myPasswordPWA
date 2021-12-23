@@ -34,6 +34,7 @@ export const store = configureStore({
         ignoredActions: [
           'auth/login/fulfilled',
           'auth/login/rejected',
+          'auth/logout/fulfilled',
           FLUSH,
           REHYDRATE,
           PAUSE,

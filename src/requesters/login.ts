@@ -7,3 +7,7 @@ export function makeLogin (credentials: Credentials): Promise<firebase.auth.User
   return Firebase.auth()
     .signInWithEmailAndPassword(credentials.email, credentials.password);
 }
+
+export function makeLogout (): Promise<void> {
+  return Firebase.auth().signOut();
+}

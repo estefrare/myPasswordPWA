@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login } from 'store/auth/thunks';
+
+import { login, logout } from 'store/auth/thunks';
 
 import { AuthState } from 'types';
 
@@ -34,6 +35,15 @@ export const authSlice = createSlice({
         state.isFetching = false;
         state.isAuthenticated = false;
         state.error = action.payload;
+      })
+      .addCase(logout.pending, (state) => {
+        state.isFetching = true;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        return initialState;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        return initialState;
       });
   }
 });

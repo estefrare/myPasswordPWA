@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { login } from 'store/auth/thunks';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import packageJson from '../../../package.json';
 
-import { selectError, selectFetching } from 'store/auth/selectors';
+import { selectAuthenticated, selectError, selectFetching } from 'store/auth/selectors';
 import Button from 'ui/button';
 import Input from 'ui/input';
 import Modal from 'ui/modal';
@@ -19,11 +20,19 @@ import styles from 'screens/login/Login.module.css';
 
 export function Login () {
   const { t } = useTranslation();
+  const history = useHistory();
   const isFetching = useAppSelector(selectFetching);
   const error = useAppSelector(selectError);
+  const isAuthenticated = useAppSelector(selectAuthenticated);
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('frare.esteban+test@gmail.com');
   const [password, setPassword] = useState('test123');
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push('/dashboard');
+    }
+  }, [isAuthenticated]);
 
   return (
     <>
