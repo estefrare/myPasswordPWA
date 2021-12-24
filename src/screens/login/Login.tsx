@@ -30,7 +30,7 @@ export function Login () {
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push('/dashboard');
+      history.push('/accounts');
     }
   }, [isAuthenticated]);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
   Redirect,
@@ -8,7 +8,8 @@ import {
 } from 'react-router-dom';
 
 import 'App.css';
-import { Dashboard } from 'screens/dashboard/Dashboard';
+import { Accounts } from 'screens/accounts/Accounts';
+import Firebase from 'helpers/firebase';
 import { Login } from 'screens/login/Login';
 import { selectDarkMode } from 'store/settings/selectors';
 import { useAppSelector } from 'app/hooks';
@@ -16,12 +17,16 @@ import { useAppSelector } from 'app/hooks';
 function App () {
   const darkMode = useAppSelector(selectDarkMode);
 
+  useEffect(() => {
+    Firebase.auth();
+  }, []);
+
   return (
     <Router>
       <div className={darkMode ? 'dark' : 'light'}>
         <Switch>
           <Route path="/login" component={Login} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/accounts" component={Accounts} />
           <Redirect to="/login" />
         </Switch>
       </div>

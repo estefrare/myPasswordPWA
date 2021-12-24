@@ -14,11 +14,13 @@
     --input-color: #252525;
 
     --theme-icon: #656565;
+
+    --background: #F8F8F8;
 }
 
 .dark {
     --theme-color: #0000A8;
-    --page-background: #141414;
+    --page-background: #000000;
     --text: #2B2828;
     --text-opposite: #D8D8D8;
 
@@ -27,4 +29,6 @@
     --input-color: #FFFFFF;
 
     --theme-icon: #FAFAFA;
+
+    --background: #151515;
 }

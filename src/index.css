@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+button {
+  outline: none !important;
+}
+
+button:active {
+  border-style: none;
+}
+
 @font-face {
   font-family: "Lato";
   font-weight: 100;
